@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPYEAH - Contact Us & Customer Care</title>
+    <meta name="description" content="Get in touch with SHOPYEAH customer support. Inquire about product specs, order tracking, warranties, or wholesale inquiries.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar" role="region" aria-label="Promotional announcement">
+        <span>⚡ Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
+    </div>
+
+    <!-- Sticky E-Commerce Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Brand Logo with High-Quality Theme "S" Monogram -->
+            <a href="index.html" class="brand-logo" aria-label="SHOPYEAH Homepage">
+                <svg viewBox="0 0 44 44" width="38" height="38" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="sy-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#1e56cf" />
+                        </linearGradient>
+                        <linearGradient id="sy-s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#f8fafc" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="44" height="44" rx="12" fill="url(#sy-logo-bg)" />
+                    <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                    <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="url(#sy-s-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                </svg>
+                <span>SHOP<span class="brand-highlight">YEAH</span></span>
+            </a>
+
+            <!-- Integrated Header Search Bar -->
+            <div class="header-search">
+                <form class="search-form header-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
+                        aria-label="Search products" 
+                        autocomplete="off" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Submit search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="cart.html" class="cart-btn" aria-label="View shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Cart</span>
+                    <span id="cart-badge" class="cart-badge" aria-label="0 items in cart">0</span>
+                </a>
+
+                <button 
+                    type="button" 
+                    class="hamburger-btn" 
+                    id="hamburger-btn" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-nav" 
+                    aria-label="Toggle navigation menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+            </ul>
+            <div class="mobile-search-wrapper">
+                <form class="search-form mobile-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, MacBook, Sony..." 
+                        aria-label="Search products on mobile" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">Contact Customer Care</h1>
+            <p class="page-subtitle">
+                Have questions about your order, gadget warranties, or product compatibility? We're here to help you every step of the way.
+            </p>
+        </div>
+
+        <div class="contact-layout">
+            <!-- Left Column: Contact Cards Preserving Existing Store Details -->
+            <section class="contact-cards-column" aria-label="Store Information">
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="contact-card-content">
+                        <h3>Customer Support Email</h3>
+                        <p>For order queries, tracking, or support:</p>
+                        <p><a href="mailto:shopyeah@gmail.com"><strong>shopyeah@gmail.com</strong></a></p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <div class="contact-card-content">
+                        <h3>Mobile Contact Number</h3>
+                        <p>Call or SMS for immediate inquiries:</p>
+                        <p><a href="tel:09123456789"><strong>09123456789</strong></a></p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <div class="contact-card-content">
+                        <h3>Telephone Landline</h3>
+                        <p>Customer hotline:</p>
+                        <p><a href="tel:+2123456"><strong>+2123456</strong></a></p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="contact-card-content">
+                        <h3>Operating Hours & Dispatch</h3>
+                        <p>Monday to Saturday: <strong>9:00 AM – 6:00 PM PHT</strong></p>
+                        <p style="font-size:0.8125rem; color:var(--color-text-light); margin-top:0.25rem;">Orders placed on Sundays are processed early Monday morning.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Interactive Send Us a Message Form -->
+            <section class="contact-form-panel" aria-label="Send Us a Message">
+                <h2>Send Us a Message</h2>
+                <p>Fill out the form below and our dedicated support team will reach back out within 24 hours.</p>
+
+                <form id="contact-form" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="contact-name">Your Full Name *</label>
+                        <input type="text" id="contact-name" class="form-input" required placeholder="e.g. Maria Santos" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contact-email">Email Address *</label>
+                        <input type="email" id="contact-email" class="form-input" required placeholder="e.g. maria@gmail.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contact-order">Order Number (Optional)</label>
+                        <input type="text" id="contact-order" class="form-input" placeholder="e.g. #SY-123456" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contact-message">How can we help you? *</label>
+                        <textarea id="contact-message" class="form-textarea" required placeholder="Tell us more about your inquiry or concern..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-lg" id="btn-contact-submit">
+                        Send Message
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Professional E-Commerce Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo">
+                    <svg viewBox="0 0 44 44" width="36" height="36" fill="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="sy-footer-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#1e56cf" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="44" height="44" rx="12" fill="url(#sy-footer-logo-bg)" />
+                        <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                        <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                    </svg>
+                    <span>SHOP<span style="color:var(--color-tertiary)">YEAH</span></span>
+                </a>
+                <p>
+                    Your premier online gadget and electronics storefront in the Philippines. Providing authentic smartphones, laptops, audio gear, and gaming tech with dependable nationwide support.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Browse Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="product.html?category=Smartphones">Smartphones</a></li>
+                    <li><a href="product.html?category=Laptops">Laptops</a></li>
+                    <li><a href="product.html?category=Audio">Audio</a></li>
+                    <li><a href="product.html?category=Tablets">Tablets</a></li>
+                    <li><a href="product.html?category=Wearables">Wearables</a></li>
+                    <li><a href="product.html?category=Accessories">Accessories</a></li>
+                    <li><a href="product.html?category=Gaming">Gaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h4>Customer Care</h4>
+                <p><strong>Email:</strong> shopyeah@gmail.com</p>
+                <p><strong>Mobile:</strong> 09123456789</p>
+                <p><strong>Telephone:</strong> +2123456</p>
+                <p><strong>Hours:</strong> Mon–Sat: 9:00 AM – 6:00 PM PHT</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SHOPYEAH Philippines. All rights reserved. Inspired by Kimstore.</p>
+                <div class="payment-badges">
+                    <span class="pay-pill">Cash On Delivery</span>
+                    <span class="pay-pill">GCash</span>
+                    <span class="pay-pill">Maya</span>
+                    <span class="pay-pill">Visa / Mastercard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>

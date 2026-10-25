@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPYEAH - About Us & Our Mission</title>
+    <meta name="description" content="Discover SHOPYEAH's story, our mission to provide quality tech & lifestyle products, and our vision to be the most trusted e-commerce platform in the Philippines.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar" role="region" aria-label="Promotional announcement">
+        <span>⚡ Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
+    </div>
+
+    <!-- Sticky E-Commerce Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Brand Logo with High-Quality Theme "S" Monogram -->
+            <a href="index.html" class="brand-logo" aria-label="SHOPYEAH Homepage">
+                <svg viewBox="0 0 44 44" width="38" height="38" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="sy-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#1e56cf" />
+                        </linearGradient>
+                        <linearGradient id="sy-s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#f8fafc" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="44" height="44" rx="12" fill="url(#sy-logo-bg)" />
+                    <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                    <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="url(#sy-s-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                </svg>
+                <span>SHOP<span class="brand-highlight">YEAH</span></span>
+            </a>
+
+            <!-- Integrated Header Search Bar -->
+            <div class="header-search">
+                <form class="search-form header-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
+                        aria-label="Search products" 
+                        autocomplete="off" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Submit search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="aboutus.html" class="active">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="cart.html" class="cart-btn" aria-label="View shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Cart</span>
+                    <span id="cart-badge" class="cart-badge" aria-label="0 items in cart">0</span>
+                </a>
+
+                <button 
+                    type="button" 
+                    class="hamburger-btn" 
+                    id="hamburger-btn" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-nav" 
+                    aria-label="Toggle navigation menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="aboutus.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="mobile-search-wrapper">
+                <form class="search-form mobile-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, MacBook, Sony..." 
+                        aria-label="Search products on mobile" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Introduction -->
+        <section class="about-hero" aria-label="About SHOPYEAH">
+            <span class="about-hero-tag">The SHOPYEAH Story</span>
+            <h1>Welcome to SHOPYEAH</h1>
+            <p>
+                Welcome to our website! We are a dedicated team committed to providing quality products and services to our customers across the Philippines. Inspired by pioneering e-commerce leaders like Kimstore, SHOPYEAH makes famous tech brands—including Apple, Samsung, Xiaomi, ASUS, Sony, and Nintendo—accessible, affordable, and dependable for every Filipino.
+            </p>
+        </section>
+
+        <!-- Side-by-Side Mission & Vision Cards (Preserving & Elevating Original Core Content) -->
+        <section class="mission-vision-grid" aria-label="Mission and Vision">
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <h2>Our Mission</h2>
+                <p>
+                    <strong>To provide excellent service and satisfy our customers.</strong> We achieve this by sourcing rigorously tested, genuine electronics, providing transparent pricing with zero surprise markups, and delivering prompt, attentive after-sales support.
+                </p>
+            </div>
+
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h2>Our Vision</h2>
+                <p>
+                    <strong>To become a trusted and successful organization.</strong> We envision SHOPYEAH as the go-to online destination where tech enthusiasts, students, work-from-home professionals, and modern households discover lifestyle tech with absolute peace of mind.
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats Counter Strip -->
+        <section class="stats-strip" aria-label="Store Impact & Milestones">
+            <div class="stat-item">
+                <h3>25,000+</h3>
+                <p>Happy Filipino Shoppers</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Authentic Quality Gear</p>
+            </div>
+            <div class="stat-item">
+                <h3>99.4%</h3>
+                <p>On-Time Nationwide Dispatch</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.8 / 5.0</h3>
+                <p>Average Customer Satisfaction</p>
+            </div>
+        </section>
+
+        <!-- Why Shop With SHOPYEAH (Kimstore Inspiration) -->
+        <section aria-label="Why Choose Us">
+            <div class="section-header" style="text-align: center; display: block; margin-bottom: 2rem;">
+                <h2 class="section-title">Why Shop With SHOPYEAH?</h2>
+                <p class="section-subtitle">The four cornerstones behind our trusted e-commerce service.</p>
+            </div>
+
+            <div class="why-shop-grid">
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Curated Selection</h3>
+                    <p>Every product is handpicked and verified for authentic serial numbers, battery safety, and durability.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3>Pocket-Friendly Prices</h3>
+                    <p>Competitive Philippine Peso pricing without middlemen markups or hidden service fees.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </div>
+                    <h3>Nationwide Express Delivery</h3>
+                    <p>Partnered with trusted couriers for dependable door-to-door delivery with live tracking.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                    </div>
+                    <h3>Worry-Free After-Sales</h3>
+                    <p>7-day replacement warranty on manufacturing defects with responsive customer care.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Callout Banner -->
+        <section style="background: linear-gradient(135deg, var(--color-primary-light) 0%, #e0edff 100%); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 3rem 2rem; text-align: center; margin-top: 1rem;">
+            <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 0.75rem;">
+                Ready to Upgrade Your Daily Tech?
+            </h2>
+            <p style="color: var(--color-text-muted); max-width: 580px; margin: 0 auto 1.75rem; font-size: 1rem;">
+                Browse through all 25 top-rated smartphones, laptops, headphones, and gaming consoles today.
+            </p>
+            <a href="product.html" class="btn btn-lg">Explore Products Catalog</a>
+        </section>
+    </main>
+
+    <!-- Professional E-Commerce Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo">
+                    <svg viewBox="0 0 44 44" width="36" height="36" fill="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="sy-footer-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#1e56cf" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="44" height="44" rx="12" fill="url(#sy-footer-logo-bg)" />
+                        <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                        <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                    </svg>
+                    <span>SHOP<span style="color:var(--color-tertiary)">YEAH</span></span>
+                </a>
+                <p>
+                    Your premier online gadget and electronics storefront in the Philippines. Providing authentic smartphones, laptops, audio gear, and gaming tech with dependable nationwide support.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Browse Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="product.html?category=Smartphones">Smartphones</a></li>
+                    <li><a href="product.html?category=Laptops">Laptops</a></li>
+                    <li><a href="product.html?category=Audio">Audio</a></li>
+                    <li><a href="product.html?category=Tablets">Tablets</a></li>
+                    <li><a href="product.html?category=Wearables">Wearables</a></li>
+                    <li><a href="product.html?category=Accessories">Accessories</a></li>
+                    <li><a href="product.html?category=Gaming">Gaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h4>Customer Care</h4>
+                <p><strong>Email:</strong> shopyeah@gmail.com</p>
+                <p><strong>Mobile:</strong> 09123456789</p>
+                <p><strong>Telephone:</strong> +2123456</p>
+                <p><strong>Hours:</strong> Mon–Sat: 9:00 AM – 6:00 PM PHT</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SHOPYEAH Philippines. All rights reserved. Inspired by Kimstore.</p>
+                <div class="payment-badges">
+                    <span class="pay-pill">Cash On Delivery</span>
+                    <span class="pay-pill">GCash</span>
+                    <span class="pay-pill">Maya</span>
+                    <span class="pay-pill">Visa / Mastercard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>

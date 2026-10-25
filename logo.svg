@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44" fill="none">
+  <defs>
+    <linearGradient id="shopyeah-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1e56cf" />
+    </linearGradient>
+    <linearGradient id="shopyeah-s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <filter id="logo-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <!-- Background with theme color -->
+  <rect width="44" height="44" rx="12" fill="url(#shopyeah-logo-bg)" filter="url(#logo-shadow)" />
+  <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+  
+  <!-- High Quality "S" Monogram -->
+  <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" 
+        stroke="url(#shopyeah-s-grad)" 
+        stroke-width="4.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+        
+  <!-- Subtle accent dot -->
+  <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+</svg>
