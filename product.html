@@ -11,7 +11,7 @@
 <body id="product-catalog-root">
     <!-- Top Announcement Bar -->
     <div class="announcement-bar" role="region" aria-label="Promotional announcement">
-        <span>⚡ Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
+        <span><svg class="announcement-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" /></svg>Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
     </div>
 
     <!-- Sticky E-Commerce Header -->
@@ -157,7 +157,12 @@
                         placeholder="Filter by keyword (e.g. iPhone, MacBook, Sony, Switch)..." 
                         aria-label="Filter products live"
                     />
-                    <button type="button" id="catalog-search-clear" class="catalog-search-clear" aria-label="Clear filter search">✕</button>
+                    <button type="button" id="catalog-search-clear" class="catalog-search-clear" aria-label="Clear filter search">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
                 </div>
 
                 <div class="product-count-meta" id="product-count-meta" aria-live="polite">

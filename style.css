@@ -136,6 +136,23 @@ a {
   letter-spacing: 0.03em;
 }
 
+.announcement-bar span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.announcement-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* --------------------------------------------------------------------------
    Sticky E-Commerce Header
    -------------------------------------------------------------------------- */
@@ -735,6 +752,15 @@ main {
   font-weight: 800;
   color: var(--color-primary-dark);
   letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title-icon.flame-icon {
+  color: #ea580c;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
 .section-subtitle {
@@ -902,10 +928,17 @@ main {
   color: var(--color-text-light);
   display: none;
   padding: 4px;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.catalog-search-clear:hover {
+  color: var(--color-text);
 }
 
 .catalog-search-clear.visible {
-  display: block;
+  display: inline-flex;
 }
 
 .catalog-sort-group {
@@ -1494,6 +1527,29 @@ main {
   color: var(--color-text-muted);
 }
 
+.shipping-unlocked-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.celebration-icon {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.checkout-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-lock-icon,
+.lock-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
 /* --------------------------------------------------------------------------
    Modal Dialogs (Checkout & Confirmation)
    -------------------------------------------------------------------------- */
@@ -1550,6 +1606,10 @@ main {
   cursor: pointer;
   padding: 0.25rem;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
 }
 
 .modal-close-btn:hover {

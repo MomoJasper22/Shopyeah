@@ -69,10 +69,10 @@
       const originalText = triggerBtn.innerHTML;
       triggerBtn.classList.add('added');
       triggerBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
-        ✓ Added
+        <span>Added</span>
       `;
       setTimeout(() => {
         triggerBtn.classList.remove('added');
@@ -919,7 +919,18 @@
               </svg>
               ${
                 isFreeShipping
-                  ? `<span>🎉 You've unlocked <strong>FREE Shipping!</strong></span>`
+                  ? `<span class="shipping-unlocked-msg">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="celebration-icon" aria-hidden="true">
+                        <polygon points="2 22 8 20 20 8 16 4 4 16 2 22"></polygon>
+                        <circle cx="18" cy="4" r="1.5" fill="currentColor"></circle>
+                        <circle cx="21" cy="9" r="1.2" fill="currentColor"></circle>
+                        <circle cx="14" cy="2" r="1.2" fill="currentColor"></circle>
+                        <line x1="8" y1="12" x2="12" y2="16"></line>
+                        <path d="M19 13l2 2"></path>
+                        <path d="M15 17l1.5 2.5"></path>
+                      </svg>
+                      You've unlocked <strong>FREE Shipping!</strong>
+                    </span>`
                   : `<span>Add <strong>${formatPeso(remainingForFreeShipping)}</strong> more for FREE Shipping!</span>`
               }
             </div>
@@ -975,7 +986,13 @@
           </button>
 
           <div class="checkout-trust-badges">
-            <span>🔒 Secure Checkout</span>
+            <span class="checkout-trust-pill">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lock-icon" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              Secure Checkout
+            </span>
             <span>•</span>
             <span>Cash on Delivery</span>
             <span>•</span>
@@ -987,7 +1004,12 @@
       <!-- Checkout Confirmation Modal -->
       <div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
         <div class="modal-content">
-          <button type="button" class="modal-close-btn" id="modal-close-x" aria-label="Close checkout modal">✕</button>
+          <button type="button" class="modal-close-btn" id="modal-close-x" aria-label="Close checkout modal">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
           
           <div class="modal-header">
             <h2 class="modal-title" id="checkout-modal-title">Complete Your Order</h2>
