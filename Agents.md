@@ -8,27 +8,29 @@
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
-- [Team Members](#team-members)
-- [Architecture Diagram](#architecture-diagram)
-- [File Inventory](#file-inventory)
-- [Page-by-Page Breakdown](#page-by-page-breakdown)
-  - [1. `index.html` — Home / Storefront](#1-indexhtml--home--storefront)
-  - [2. `product.html` — Product Catalog](#2-producthtml--product-catalog)
-  - [3. `cart.html` — Shopping Cart & Checkout](#3-carthtml--shopping-cart--checkout)
-  - [4. `auth.html` — Authentication Gateway](#4-authhtml--authentication-gateway)
-  - [5. `profile.html` — Customer Profile & Settings](#5-profilehtml--customer-profile--settings)
-  - [6. `aboutus.html` — About Us](#6-aboutushtml--about-us)
-  - [7. `contact.html` — Contact / Customer Care](#7-contacthtml--contact--customer-care)
-- [JavaScript Module Map (app.js)](#javascript-module-map-appjs)
-  - [Key Function Reference](#key-function-reference)
-- [CSS Architecture (style.css)](#css-architecture-stylecss)
-- [Data Layer & Product Catalog](#data-layer--product-catalog)
-- [Feature Catalog](#feature-catalog)
-- [State Management](#state-management)
-- [Design Tokens & Brand Identity](#design-tokens--brand-identity)
-- [Conventions & Patterns](#conventions--patterns)
-- [Known Limitations & Caveats](#known-limitations--caveats)
+- [SHOPYEAH — Codebase Agent Reference](#shopyeah--codebase-agent-reference)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Team Members](#team-members)
+  - [Architecture Diagram](#architecture-diagram)
+  - [File Inventory](#file-inventory)
+  - [Page-by-Page Breakdown](#page-by-page-breakdown)
+    - [1. `index.html` — Home / Storefront](#1-indexhtml--home--storefront)
+    - [2. `product.html` — Product Catalog](#2-producthtml--product-catalog)
+    - [3. `cart.html` — Shopping Cart \& Checkout](#3-carthtml--shopping-cart--checkout)
+    - [4. `auth.html` — Authentication Gateway](#4-authhtml--authentication-gateway)
+    - [5. `profile.html` — Customer Profile \& Settings](#5-profilehtml--customer-profile--settings)
+    - [6. `aboutus.html` — About Us](#6-aboutushtml--about-us)
+    - [7. `contact.html` — Contact / Customer Care](#7-contacthtml--contact--customer-care)
+  - [JavaScript Module Map (app.js)](#javascript-module-map-appjs)
+    - [Key Function Reference](#key-function-reference)
+  - [CSS Architecture (style.css)](#css-architecture-stylecss)
+  - [Data Layer \& Product Catalog](#data-layer--product-catalog)
+  - [Feature Catalog](#feature-catalog)
+  - [State Management](#state-management)
+  - [Design Tokens \& Brand Identity](#design-tokens--brand-identity)
+  - [Conventions \& Patterns](#conventions--patterns)
+  - [Known Limitations \& Caveats](#known-limitations--caveats)
 
 ---
 
@@ -40,10 +42,11 @@
 - 🚫 **Zero dependencies** — no npm, webpack, vite, or frontend frameworks.
 - 📁 **Flat file structure** — zero configuration, fully portable.
 - 🇵🇭 **Philippines market focus** — prices in ₱ (PHP), payment options include Cash on Delivery, GCash, Maya, and cards.
-- 🛒 **Swapped Action Layout** — Cart button is placed first in header actions, followed by the Account/Profile button.
+- 🛒 **Swapped Action Layout & Clean Cart Button** — Cart button is placed first in header actions, featuring the cart icon and "Cart" label without an outer circle container, followed by the Account/Profile button.
+- 🔍 **Clean Header & Prominent Catalog Search** — Search bar removed from all site headers for an uncluttered navigation experience; catalog search is enlarged and placed at the top of filter buttons on `product.html`.
+- ⚡ **"Check" & Hero "View Deal" Modal CTAs** — Multi-variant products and the home hero "View Deal" button trigger the interactive product detail modal (swatches, storage chips, quantity stepper, Add to Cart / Buy Now).
 - 🔒 **Mandatory Sign-In Checkout** — customers must be authenticated before checking out, enabling seamless 1-click address autofill.
-- 👤 **Dedicated Profile & Settings** — separate `profile.html` for managing personal details, saved delivery addresses, order history, and preferences.
-- ⚡ **"Check" CTA Button** — products with multiple configuration options (color/storage/RAM) display a clean "Check" button without icons.
+- 👤 **Dedicated Profile & Settings** — separate `profile.html` for managing personal details, saved delivery addresses, genuine order history (with zero demo data), and password security.
 - 🌌 **Maximized White Space** — expansive 1460px max-width layout on main storefront pages for an uncluttered, modern browsing experience.
 
 ---
@@ -127,16 +130,16 @@
 
 ### 1. `index.html` — Home / Storefront
 - **Announcement Bar**: Nationwide shipping promotion with `SHOPYEAH100` discount code.
-- **Header Actions**: Cart button first (`.cart-btn`), Login/Profile button second (`.account-btn`).
-- **Hero Banner**: Expansive gradient banner featuring best-seller showcase.
+- **Header Actions**: Cart button first (`.cart-btn`, icon + text without outer circle), Login/Profile button second (`.account-btn`). (Header search removed for a clean navigation layout).
+- **Hero Banner**: Expansive gradient banner featuring best-seller showcase with interactive "View Deal" button opening the configuration modal.
 - **Trust Strip**: 4-column value proposition cards with generous gaps.
 - **Category Grid**: 7 interactive department pills linking directly to `product.html?category=X`.
 - **PH Best Sellers Grid**: Top 8 curated products rendered dynamically via `initHomePage()`.
 - **White Space**: Maximized with widened margins and breathable grid layouts.
 
 ### 2. `product.html` — Product Catalog
-- **Category Pills**: 8 filter tabs (`All Products` + 7 categories) with ARIA tab roles.
-- **Toolbar**: Live keyword filter input, clear button, product counter, and sort dropdown.
+- **Catalog Controls Header**: Balanced 3-part top controls row featuring "Sort by:" on the left, an ergonomically bounded keyword search bar (`max-width: 540px`) in the center, and "Showing X of Y products" counter on the right.
+- **Category Filter Pills**: 8 filter tabs (`All Products` + 7 categories) arranged directly below the search and controls row.
 - **Product Cards**: Multi-variant products display **"Check"** (no icon); single-variant products display "Add to Cart" with icon.
 - **Product Detail Modal**: Color swatches, storage/memory chip pickers, editable quantity input (supporting both direct typing and `+`/`−` stepper buttons), dynamic price computation, and "Add to Cart" / "Buy Now".
 
@@ -144,11 +147,11 @@
 - **Cart Panel**: Line items with thumbnails, variant badges, quantity adjusters (supporting direct typing and `+`/`−` stepper buttons), and deletion.
 - **Shipping Tracker**: Visual progress bar indicating progress toward the ₱1,500 free shipping threshold.
 - **Promo Form**: Applies `SHOPYEAH100` code for an instant ₱100 reduction.
-- **Checkout Auth Gate**:
+- **Checkout Auth Gate & Order Placement**:
   - Clicking "Proceed to Checkout" verifies `getSession()`.
   - Unauthenticated users are notified and redirected to `auth.html?next=cart.html`.
   - Authenticated users automatically receive pre-filled Name, Mobile Phone, and default saved Shipping Address.
-- **Order Placement**: Placing an order generates a simulated `#SY-XXXXXX` tracking number, records the order in `shopyeah_orders_v1`, and clears the active cart.
+  - Submitting "Confirm & Place Order" creates an order record in `shopyeah_orders_v1`, clears the cart, updates cart badges, and opens the order confirmation modal with direct links to continue shopping or view order history.
 
 ### 4. `auth.html` — Authentication Gateway
 - **Streamlined Distraction-Free Header**:
@@ -164,8 +167,8 @@
 - **Tabs**:
   1. **Personal Details**: Edit Full Name and Mobile Phone with instant session/user updates.
   2. **Delivery Addresses**: Save default street, barangay, city, province, and postal code for 1-click checkout autofill.
-  3. **Order History**: Real-time rendering of all placed orders (with tracking IDs, item lists, dates, amounts, and statuses).
-  4. **Security & Preferences**: Password change simulation with credential checks and notification alert toggles.
+  3. **Order History**: Pure real-time rendering of placed orders from `shopyeah_orders_v1`, with a clean empty state when no orders have been placed (zero hardcoded mock data).
+  4. **Security & Password**: Password change management with credential checks (notification preferences removed).
 - **Logout Action**: Securely clears session and navigates to `auth.html`.
 
 ### 6. `aboutus.html` — About Us
@@ -242,12 +245,16 @@ app.js
 
 | Feature | Status | Description |
 |---|:---:|---|
-| Swapped Header Buttons | ✅ | Cart button first, Login/Profile second across all page headers. |
-| Distraction-Free Auth | ✅ | `auth.html` header has search, home, about, contact, and products catalog removed. |
-| Dedicated Profile Page | ✅ | `profile.html` with editable details, address storage, and order history. |
+| Swapped Header Buttons | ✅ | Cart button first (icon + text without outer circle), Login/Profile second across all page headers. |
+| Header Search Removed | ✅ | All page headers have search bars removed for a clean, balanced 3-part navigation layout. |
+| Prominent Catalog Search | ✅ | Enlarged search bar positioned at the top of the filter buttons on `product.html`. |
+| Hero "View Deal" Modal | ✅ | Hero banner "View Deal" button triggers the interactive product detail modal like "Check". |
+| Dedicated Profile Page | ✅ | `profile.html` with editable details, address storage, and order history (notification preferences removed). |
+| Genuine Order History | ✅ | Order history displays actual placed orders with an empty state when zero orders exist (demo mock data removed). |
 | Mandatory Checkout Sign-In | ✅ | Cart checkout and Buy Now require authentication before launching order forms. |
 | Direct Quantity Typing | ✅ | Both shopping cart line items and the product detail modal support direct quantity typing in addition to `+`/`−` steppers. |
 | "Check" Product CTA | ✅ | Multi-variant cards display "Check" without icons; single-variant display "Add to Cart". |
+| Robust Checkout Order Placement | ✅ | "Confirm & Place Order" creates tracking IDs, stores orders in `shopyeah_orders_v1`, clears cart, and opens confirmation modal. |
 | Maximized White Space | ✅ | 1460px container, airy grid gaps, and generous vertical margins. |
 | Promo Code Discount | ✅ | `SHOPYEAH100` applies ₱100 off when subtotal is valid. |
 | Free Shipping Meter | ✅ | Live progress bar calculating distance to the ₱1,500 threshold. |

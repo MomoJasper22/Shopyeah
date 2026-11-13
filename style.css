@@ -307,26 +307,21 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
+  background-color: transparent;
+  color: var(--color-text);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.9375rem;
-  border: 1px solid rgba(30, 86, 207, 0.15);
+  border: none;
   transition: all var(--transition-fast);
   min-height: var(--touch-target);
   position: relative;
 }
 
-.cart-btn:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-}
-
-.cart-btn:hover .cart-badge {
-  background-color: #ffffff;
+.cart-btn:hover,
+.cart-btn.active {
+  background-color: var(--color-primary-light);
   color: var(--color-primary);
 }
 
@@ -336,21 +331,11 @@ a {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
+  transition: stroke var(--transition-fast);
 }
 
 .cart-badge {
-  background-color: var(--color-sale);
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  min-width: 20px;
-  height: 20px;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  display: none !important;
 }
 
 /* Hamburger Toggle Button */
@@ -843,108 +828,28 @@ main {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-xs);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.25rem;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Category Filter Pills */
-.category-filter-pills {
+/* Top Controls Row: Sort by (Left), Search Bar (Center), Product Count (Right) */
+.catalog-top-controls {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-}
-
-.filter-pill {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--transition-fast);
-  min-height: 38px;
-}
-
-.filter-pill:hover {
-  border-color: var(--color-secondary);
-  color: var(--color-primary);
-}
-
-.filter-pill.active {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-xs);
-}
-
-.toolbar-controls {
-  display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.catalog-search-box {
-  flex: 1;
-  max-width: 380px;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.catalog-search-input {
+  gap: 1.25rem;
   width: 100%;
-  padding: 0.6rem 2.25rem 0.6rem 1rem;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 0.9375rem;
-}
-
-.catalog-search-input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(30, 86, 207, 0.12);
-}
-
-.catalog-search-clear {
-  position: absolute;
-  right: 0.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-text-light);
-  display: none;
-  padding: 4px;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--transition-fast);
-}
-
-.catalog-search-clear:hover {
-  color: var(--color-text);
-}
-
-.catalog-search-clear.visible {
-  display: inline-flex;
 }
 
 .catalog-sort-group {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .catalog-sort-label {
@@ -952,6 +857,142 @@ main {
   font-weight: 600;
   color: var(--color-text-muted);
   white-space: nowrap;
+}
+
+.catalog-sort-select {
+  padding: 0.55rem 2rem 0.55rem 0.85rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  transition: all var(--transition-fast);
+}
+
+.catalog-sort-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 86, 207, 0.12);
+}
+
+.catalog-search-box {
+  flex: 1;
+  max-width: 540px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.catalog-search-icon {
+  position: absolute;
+  left: 1.15rem;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--color-text-light);
+  stroke-width: 2.2;
+  pointer-events: none;
+  transition: stroke var(--transition-fast);
+}
+
+.catalog-search-box:focus-within .catalog-search-icon {
+  stroke: var(--color-primary);
+}
+
+.catalog-search-input {
+  width: 100%;
+  padding: 0.75rem 2.75rem 0.75rem 3rem;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-fast);
+}
+
+.catalog-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(30, 86, 207, 0.15);
+}
+
+.catalog-search-clear {
+  position: absolute;
+  right: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-light);
+  display: none;
+  padding: 5px;
+  border-radius: var(--radius-full);
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.catalog-search-clear:hover {
+  color: var(--color-text);
+  background-color: var(--color-border);
+}
+
+.catalog-search-clear.visible {
+  display: inline-flex;
+}
+
+.product-count-meta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* Category Filter Pills (Arranged Appropriately Below Search Bar) */
+.category-filter-pills {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.filter-pill {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.55rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  min-height: 40px;
+}
+
+.filter-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.filter-pill.active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 6px rgba(30, 86, 207, 0.25);
 }
 
 .catalog-sort-select {
@@ -2420,26 +2461,39 @@ main {
     padding: 1rem 0.85rem;
   }
 
-  .toolbar-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
+  .catalog-top-controls {
+    flex-wrap: wrap;
+    gap: 0.85rem;
   }
 
   .catalog-search-box {
+    order: 1;
     max-width: 100%;
-  }
-
-  .catalog-sort-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
   }
 
-  .catalog-sort-select {
-    flex: 1;
-    max-width: calc(100% - 70px);
+  .catalog-search-input {
+    font-size: 0.9375rem;
+    padding: 0.75rem 2.5rem 0.75rem 2.75rem;
+  }
+
+  .catalog-search-icon {
+    left: 0.85rem;
+    width: 18px;
+    height: 18px;
+  }
+
+  .catalog-sort-group {
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .product-count-meta {
+    order: 3;
+    margin-left: auto;
+    font-size: 0.8125rem;
   }
 }
 
@@ -2760,11 +2814,6 @@ main {
   .brand-logo svg {
     width: 24px;
     height: 24px;
-  }
-
-  /* Compact Cart Button: show icon and count badge only on ultra-narrow screens */
-  .cart-btn span:not(.cart-badge) {
-    display: none;
   }
 
   .cart-btn {

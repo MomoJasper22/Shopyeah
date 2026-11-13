@@ -38,26 +38,6 @@
                 <span>SHOP<span class="brand-highlight">YEAH</span></span>
             </a>
 
-            <!-- Integrated Header Search Bar -->
-            <div class="header-search">
-                <form class="search-form header-search-form" role="search">
-                    <input 
-                        type="search" 
-                        class="search-input" 
-                        name="q" 
-                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
-                        aria-label="Search products" 
-                        autocomplete="off" 
-                    />
-                    <button type="submit" class="search-btn" aria-label="Submit search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
             <!-- Desktop Navigation -->
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -111,23 +91,6 @@
                 <li><a href="contact.html">Contact Us</a></li>
                 <li><a href="auth.html" id="mobile-account-link">Login</a></li>
             </ul>
-            <div class="mobile-search-wrapper">
-                <form class="search-form mobile-search-form" role="search">
-                    <input 
-                        type="search" 
-                        class="search-input" 
-                        name="q" 
-                        placeholder="Search iPhone, MacBook, Sony..." 
-                        aria-label="Search products on mobile" 
-                    />
-                    <button type="submit" class="search-btn" aria-label="Search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </form>
-            </div>
         </div>
     </header>
 
@@ -141,42 +104,10 @@
             </p>
         </div>
 
-        <!-- Interactive Toolbar: Filter Pills, Live Search & Sort -->
+        <!-- Interactive Toolbar: Sort by (Left), Search (Center), Count (Right), Filter Pills below -->
         <div class="catalog-toolbar" aria-label="Catalog Filters and Controls">
-            <!-- 7 Category Filter Pills -->
-            <div class="category-filter-pills" id="category-filter-pills" role="tablist" aria-label="Categories">
-                <button type="button" class="filter-pill active" data-category="All" role="tab">All Products</button>
-                <button type="button" class="filter-pill" data-category="Smartphones" role="tab">Smartphones</button>
-                <button type="button" class="filter-pill" data-category="Laptops" role="tab">Laptops</button>
-                <button type="button" class="filter-pill" data-category="Audio" role="tab">Audio</button>
-                <button type="button" class="filter-pill" data-category="Tablets" role="tab">Tablets</button>
-                <button type="button" class="filter-pill" data-category="Wearables" role="tab">Wearables</button>
-                <button type="button" class="filter-pill" data-category="Accessories" role="tab">Accessories</button>
-                <button type="button" class="filter-pill" data-category="Gaming" role="tab">Gaming</button>
-            </div>
-
-            <!-- Toolbar Lower Controls: Search Box, Meta Counter, Sort Dropdown -->
-            <div class="toolbar-controls">
-                <div class="catalog-search-box">
-                    <input 
-                        type="search" 
-                        id="catalog-search-input" 
-                        class="catalog-search-input" 
-                        placeholder="Filter by keyword (e.g. iPhone, MacBook, Sony, Switch)..." 
-                        aria-label="Filter products live"
-                    />
-                    <button type="button" id="catalog-search-clear" class="catalog-search-clear" aria-label="Clear filter search">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="product-count-meta" id="product-count-meta" aria-live="polite">
-                    Showing 25 products
-                </div>
-
+            <!-- Top Controls Row: Sort (Left), Search (Center), Count (Right) -->
+            <div class="catalog-top-controls">
                 <div class="catalog-sort-group">
                     <label for="catalog-sort-select" class="catalog-sort-label">Sort by:</label>
                     <select id="catalog-sort-select" class="catalog-sort-select" aria-label="Sort products">
@@ -187,6 +118,43 @@
                         <option value="rating">Highest Rated</option>
                     </select>
                 </div>
+
+                <div class="catalog-search-box">
+                    <svg class="catalog-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input 
+                        type="search" 
+                        id="catalog-search-input" 
+                        class="catalog-search-input" 
+                        placeholder="Search gadgets by keyword..." 
+                        aria-label="Filter products live"
+                        autocomplete="off"
+                    />
+                    <button type="button" id="catalog-search-clear" class="catalog-search-clear" aria-label="Clear filter search">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="product-count-meta" id="product-count-meta" aria-live="polite">
+                    Showing 25 of 25 products
+                </div>
+            </div>
+
+            <!-- Below Search Bar: 8 Category Filter Pills Arranged Appropriately -->
+            <div class="category-filter-pills" id="category-filter-pills" role="tablist" aria-label="Categories">
+                <button type="button" class="filter-pill active" data-category="All" role="tab">All Products</button>
+                <button type="button" class="filter-pill" data-category="Smartphones" role="tab">Smartphones</button>
+                <button type="button" class="filter-pill" data-category="Laptops" role="tab">Laptops</button>
+                <button type="button" class="filter-pill" data-category="Audio" role="tab">Audio</button>
+                <button type="button" class="filter-pill" data-category="Tablets" role="tab">Tablets</button>
+                <button type="button" class="filter-pill" data-category="Wearables" role="tab">Wearables</button>
+                <button type="button" class="filter-pill" data-category="Accessories" role="tab">Accessories</button>
+                <button type="button" class="filter-pill" data-category="Gaming" role="tab">Gaming</button>
             </div>
         </div>
 

@@ -1369,10 +1369,26 @@
 
   /* Home Storefront Page Controller (index.html) */
   async function initHomePage() {
+    await fetchProducts();
+
+    // Bind Hero "View Deal" button to open iPhone 15 Pro Max product detail modal
+    const heroDealBtn = document.getElementById('hero-view-deal-btn');
+    if (heroDealBtn) {
+      heroDealBtn.addEventListener('click', () => {
+        openProductDetail(1, heroDealBtn);
+      });
+    }
+
+    // Bind any elements with data-open-product
+    document.querySelectorAll('[data-open-product]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const pid = parseInt(el.getAttribute('data-open-product'), 10);
+        if (pid) openProductDetail(pid, el.matches('button') ? el : null);
+      });
+    });
+
     const featuredGrid = document.getElementById('featured-product-grid');
     if (!featuredGrid) return;
-
-    await fetchProducts();
 
     // Render 8 featured products (products marked as Best Seller, Flash Deal, or high rating)
     const featured = allProducts
@@ -1662,7 +1678,10 @@
             <p style="margin-bottom:0.4rem;"><strong>Delivery To:</strong> <span id="success-recipient">Juan Dela Cruz</span></p>
             <p style="margin:0;"><strong>Estimated Arrival:</strong> 2–4 Business Days</p>
           </div>
-          <a href="product.html" class="btn btn-block btn-lg">Continue Shopping</a>
+          <div style="display:flex; flex-direction:column; gap:0.65rem;">
+            <a href="profile.html?tab=orders" class="btn btn-secondary btn-block">View in Order History</a>
+            <a href="product.html" class="btn btn-block">Continue Shopping</a>
+          </div>
         </div>
       </div>
     `;
@@ -1843,6 +1862,14 @@
           ? (getBuyNowItem() ? [getBuyNowItem()] : [])
           : getCart();
 
+        // Calculate grand total accurately from purchased items
+        const orderSubtotal = purchasedItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+        const orderIsFreeShipping = orderSubtotal >= FREE_SHIPPING_THRESHOLD;
+        const orderShippingFee = orderIsFreeShipping ? 0 : STANDARD_SHIPPING_FEE;
+        const promoCode = localStorage.getItem(PROMO_CODE_STORAGE_KEY);
+        const promoDiscount = (promoCode === VALID_PROMO_CODE) ? Math.min(orderSubtotal, PROMO_DISCOUNT_AMOUNT) : 0;
+        const orderGrandTotal = Math.max(0, orderSubtotal - promoDiscount + orderShippingFee);
+
         recordOrder({
           id: simulatedTrackingId,
           trackingId: simulatedTrackingId,
@@ -1857,7 +1884,7 @@
             price: i.price,
             image: i.image
           })),
-          total: grandTotal,
+          total: orderGrandTotal,
           status: 'Processing'
         });
 
@@ -1884,6 +1911,13 @@
           if (recSpan) recSpan.textContent = name;
 
           successModal.classList.add('is-active');
+
+          successModal.addEventListener('click', (ev) => {
+            if (ev.target === successModal) {
+              successModal.classList.remove('is-active');
+              renderCartView();
+            }
+          });
         }
 
         showToast('Order confirmed successfully!', 'success');
@@ -2338,24 +2372,33 @@
     const navButtons = document.querySelectorAll('.profile-nav-btn');
     const tabPanels = document.querySelectorAll('.profile-tab-content');
 
+    function activateProfileTab(targetTab) {
+      navButtons.forEach((b) => {
+        b.classList.toggle('active', b.getAttribute('data-tab') === targetTab);
+      });
+
+      tabPanels.forEach((panel) => {
+        if (panel.id === `tab-panel-${targetTab}`) {
+          panel.hidden = false;
+          panel.classList.add('active');
+        } else {
+          panel.hidden = true;
+          panel.classList.remove('active');
+        }
+      });
+    }
+
     navButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const targetTab = btn.getAttribute('data-tab');
-
-        navButtons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        tabPanels.forEach((panel) => {
-          if (panel.id === `tab-panel-${targetTab}`) {
-            panel.hidden = false;
-            panel.classList.add('active');
-          } else {
-            panel.hidden = true;
-            panel.classList.remove('active');
-          }
-        });
+        activateProfileTab(btn.getAttribute('data-tab'));
       });
     });
+
+    // Handle URL tab parameter (e.g. profile.html?tab=orders)
+    const urlTabParam = new URLSearchParams(window.location.search).get('tab');
+    if (urlTabParam) {
+      activateProfileTab(urlTabParam);
+    }
 
     // Save Personal Details
     const personalForm = document.getElementById('profile-personal-form');
@@ -2424,27 +2467,23 @@
     if (ordersContainer) {
       const orders = getOrders();
       if (orders.length === 0) {
-        // Sample baseline orders for demonstration
-        const sampleOrders = [
-          {
-            trackingId: '#SY-849201',
-            date: 'Oct 28, 2026',
-            status: 'Delivered',
-            total: 13490,
-            payment: 'GCash E-Wallet',
-            items: [{ name: 'Apple AirPods Pro (2nd Gen) with USB-C', quantity: 1, price: 13490 }]
-          },
-          {
-            trackingId: '#SY-720184',
-            date: 'Sep 14, 2026',
-            status: 'Delivered',
-            total: 6995,
-            payment: 'Cash on Delivery',
-            items: [{ name: 'Anker 737 Power Bank (PowerCore 24K 140W)', quantity: 1, price: 6995 }]
-          }
-        ];
-
-        ordersContainer.innerHTML = sampleOrders.map(renderOrderCardHTML).join('');
+        ordersContainer.innerHTML = `
+          <div class="empty-state" style="padding: 3rem 1.5rem; text-align: center;">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary-dark);">No orders placed yet</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto;">
+              When you place an order on SHOPYEAH, you can track its delivery status and review line items here.
+            </p>
+            <a href="product.html" class="btn btn-secondary">Shop Famous Gadgets</a>
+          </div>
+        `;
       } else {
         ordersContainer.innerHTML = orders.map(renderOrderCardHTML).join('');
       }

@@ -38,26 +38,6 @@
                 <span>SHOP<span class="brand-highlight">YEAH</span></span>
             </a>
 
-            <!-- Integrated Header Search Bar -->
-            <div class="header-search">
-                <form class="search-form header-search-form" role="search">
-                    <input 
-                        type="search" 
-                        class="search-input" 
-                        name="q" 
-                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
-                        aria-label="Search products" 
-                        autocomplete="off" 
-                    />
-                    <button type="submit" class="search-btn" aria-label="Submit search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
             <!-- Desktop Navigation -->
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -112,23 +92,6 @@
                 <li><a href="contact.html">Contact Us</a></li>
                 <li><a href="profile.html" class="active" id="mobile-account-link">My Profile</a></li>
             </ul>
-            <div class="mobile-search-wrapper">
-                <form class="search-form mobile-search-form" role="search">
-                    <input 
-                        type="search" 
-                        class="search-input" 
-                        name="q" 
-                        placeholder="Search iPhone, MacBook, Sony..." 
-                        aria-label="Search products on mobile" 
-                    />
-                    <button type="submit" class="search-btn" aria-label="Search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </form>
-            </div>
         </div>
     </header>
 
@@ -185,7 +148,7 @@
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
-                        <span>Security &amp; Preferences</span>
+                        <span>Security &amp; Password</span>
                     </button>
                 </nav>
 
@@ -298,11 +261,11 @@
                     </div>
                 </section>
 
-                <!-- Tab 4: Security & Preferences -->
+                <!-- Tab 4: Security & Password -->
                 <section class="profile-tab-content" id="tab-panel-security" aria-labelledby="security-title" hidden>
                     <div class="profile-card-header">
-                        <h2 class="profile-section-title" id="security-title">Security &amp; Account Preferences</h2>
-                        <p class="profile-section-desc">Manage your password, login credentials, and communication preferences.</p>
+                        <h2 class="profile-section-title" id="security-title">Security &amp; Password</h2>
+                        <p class="profile-section-desc">Manage your password and login credentials.</p>
                     </div>
 
                     <form id="profile-password-form" class="profile-form">
@@ -319,24 +282,10 @@
                             </div>
                         </div>
 
-                        <div class="form-actions-row" style="margin-bottom:2rem;">
+                        <div class="form-actions-row">
                             <button type="submit" class="btn btn-secondary" id="btn-change-pwd">Update Password</button>
                         </div>
                     </form>
-
-                    <hr class="profile-divider" />
-
-                    <div class="profile-preferences-section">
-                        <h3 class="profile-subsection-title">Notification Preferences</h3>
-                        <label class="check-row" style="margin-bottom:0.75rem;">
-                            <input type="checkbox" id="pref-sms" checked />
-                            <span>Receive real-time SMS delivery tracking alerts on your mobile phone</span>
-                        </label>
-                        <label class="check-row" style="margin-bottom:0.75rem;">
-                            <input type="checkbox" id="pref-flash-deals" checked />
-                            <span>Get notified about exclusive SHOPYEAH Flash Sales and discounts</span>
-                        </label>
-                    </div>
                 </section>
             </div>
         </div>
