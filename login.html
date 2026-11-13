@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPYEAH - Login or Create Account</title>
+    <meta name="description" content="Log in to your SHOPYEAH account or create one to check out faster and keep your delivery details saved.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar" role="region" aria-label="Promotional announcement">
+        <span><svg class="announcement-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" /></svg>Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
+    </div>
+
+    <!-- Sticky E-Commerce Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Brand Logo with High-Quality Theme "S" Monogram -->
+            <a href="index.html" class="brand-logo" aria-label="SHOPYEAH Homepage">
+                <svg viewBox="0 0 44 44" width="38" height="38" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="sy-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#1e56cf" />
+                        </linearGradient>
+                        <linearGradient id="sy-s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#f8fafc" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="44" height="44" rx="12" fill="url(#sy-logo-bg)" />
+                    <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                    <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="url(#sy-s-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                </svg>
+                <span>SHOP<span class="brand-highlight">YEAH</span></span>
+            </a>
+
+            <!-- Integrated Header Search Bar -->
+            <div class="header-search">
+                <form class="search-form header-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
+                        aria-label="Search products" 
+                        autocomplete="off" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Submit search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="login.html" class="account-btn active" aria-current="page" id="account-link" aria-label="Log in or create an account">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span id="account-label">Login</span>
+                </a>
+                <a href="cart.html" class="cart-btn" aria-label="View shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Cart</span>
+                    <span id="cart-badge" class="cart-badge" aria-label="0 items in cart">0</span>
+                </a>
+
+                <button 
+                    type="button" 
+                    class="hamburger-btn" 
+                    id="hamburger-btn" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-nav" 
+                    aria-label="Toggle navigation menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html" class="active" id="mobile-account-link">Login</a></li>
+            </ul>
+            <div class="mobile-search-wrapper">
+                <form class="search-form mobile-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, MacBook, Sony..." 
+                        aria-label="Search products on mobile" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="auth-section" aria-labelledby="auth-title">
+            <div class="auth-card">
+                <aside class="auth-aside">
+                    <p class="auth-aside-kicker">SHOPYEAH account</p>
+                    <h2 class="auth-aside-title">Gadgets delivered nationwide, checkout in seconds.</h2>
+                    <ul class="auth-benefits">
+                        <li>Your name and mobile number are filled in at checkout</li>
+                        <li>Pay by Cash on Delivery, GCash, Maya or card</li>
+                        <li>Free shipping on orders over ₱1,500</li>
+                    </ul>
+                </aside>
+
+                <div class="auth-panel">
+                    <h1 class="auth-title" id="auth-title">Welcome back</h1>
+                    <p class="auth-subtitle" id="auth-subtitle">Sign in to check out faster and keep track of your orders.</p>
+
+                    <!-- Sign in / Create account -->
+                    <div id="auth-forms">
+                        <div class="auth-tabs" role="tablist" aria-label="Account options">
+                            <button type="button" class="auth-tab" role="tab" id="tab-login" aria-selected="true" aria-controls="login-form">Sign in</button>
+                            <button type="button" class="auth-tab" role="tab" id="tab-register" aria-selected="false" aria-controls="register-form" tabindex="-1">Create account</button>
+                        </div>
+
+                        <form id="login-form" class="auth-form" role="tabpanel" aria-labelledby="tab-login" novalidate>
+                            <div class="auth-form-error" role="alert" hidden></div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="login-email">Email</label>
+                                <input type="email" id="login-email" class="form-input" autocomplete="username" placeholder="name@example.com" aria-describedby="login-email-error">
+                                <p class="field-error" id="login-email-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label-row">
+                                    <label class="form-label" for="login-password">Password</label>
+                                    <button type="button" class="link-btn" id="forgot-password-btn">Forgot password?</button>
+                                </div>
+                                <div class="password-field">
+                                    <input type="password" id="login-password" class="form-input" autocomplete="current-password" aria-describedby="login-password-error">
+                                    <button type="button" class="password-toggle" data-target="login-password" aria-pressed="false">Show</button>
+                                </div>
+                                <p class="field-error" id="login-password-error"></p>
+                            </div>
+
+                            <label class="check-row">
+                                <input type="checkbox" id="login-remember" checked>
+                                <span>Keep me signed in on this device</span>
+                            </label>
+
+                            <button type="submit" class="btn btn-lg btn-block">Sign in</button>
+
+                            <p class="auth-switch">New to SHOPYEAH? <button type="button" class="link-btn" data-auth-switch="register">Create an account</button></p>
+                        </form>
+
+                        <form id="register-form" class="auth-form" role="tabpanel" aria-labelledby="tab-register" novalidate hidden>
+                            <div class="auth-form-error" role="alert" hidden></div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="register-name">Full name</label>
+                                <input type="text" id="register-name" class="form-input" autocomplete="name" placeholder="e.g. Juan Dela Cruz" aria-describedby="register-name-error">
+                                <p class="field-error" id="register-name-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="register-email">Email</label>
+                                <input type="email" id="register-email" class="form-input" autocomplete="email" placeholder="name@example.com" aria-describedby="register-email-error">
+                                <p class="field-error" id="register-email-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="register-phone">Mobile number</label>
+                                <input type="tel" id="register-phone" class="form-input" autocomplete="tel" placeholder="e.g. 09171234567" aria-describedby="register-phone-error">
+                                <p class="field-error" id="register-phone-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="register-password">Password</label>
+                                <div class="password-field">
+                                    <input type="password" id="register-password" class="form-input" autocomplete="new-password" aria-describedby="register-password-hint register-password-error">
+                                    <button type="button" class="password-toggle" data-target="register-password" aria-pressed="false">Show</button>
+                                </div>
+                                <p class="field-hint" id="register-password-hint">At least 8 characters.</p>
+                                <p class="field-error" id="register-password-error"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="register-confirm">Confirm password</label>
+                                <input type="password" id="register-confirm" class="form-input" autocomplete="new-password" aria-describedby="register-confirm-error">
+                                <p class="field-error" id="register-confirm-error"></p>
+                            </div>
+
+                            <button type="submit" class="btn btn-lg btn-block">Create account</button>
+
+                            <p class="auth-switch">Already have an account? <button type="button" class="link-btn" data-auth-switch="login">Sign in</button></p>
+                        </form>
+                    </div>
+
+                    <!-- Shown instead of the forms when someone is already signed in -->
+                    <div id="auth-signed-in" hidden>
+                        <dl class="auth-account-details">
+                            <div><dt>Name</dt><dd id="auth-user-name"></dd></div>
+                            <div><dt>Email</dt><dd id="auth-user-email"></dd></div>
+                            <div><dt>Mobile</dt><dd id="auth-user-phone"></dd></div>
+                        </dl>
+                        <div class="auth-signed-in-actions">
+                            <a href="product.html" class="btn btn-lg">Continue shopping</a>
+                            <a href="cart.html" class="btn btn-secondary btn-lg">View cart</a>
+                            <button type="button" class="btn btn-outline btn-lg" id="btn-logout">Log out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Professional E-Commerce Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo">
+                    <svg viewBox="0 0 44 44" width="36" height="36" fill="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="sy-footer-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#1e56cf" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="44" height="44" rx="12" fill="url(#sy-footer-logo-bg)" />
+                        <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                        <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                    </svg>
+                    <span>SHOP<span style="color:var(--color-tertiary)">YEAH</span></span>
+                </a>
+                <p>
+                    Your premier online gadget and electronics storefront in the Philippines. Providing authentic smartphones, laptops, audio gear, and gaming tech with dependable nationwide support.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Browse Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="product.html?category=Smartphones">Smartphones</a></li>
+                    <li><a href="product.html?category=Laptops">Laptops</a></li>
+                    <li><a href="product.html?category=Audio">Audio</a></li>
+                    <li><a href="product.html?category=Tablets">Tablets</a></li>
+                    <li><a href="product.html?category=Wearables">Wearables</a></li>
+                    <li><a href="product.html?category=Accessories">Accessories</a></li>
+                    <li><a href="product.html?category=Gaming">Gaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h4>Customer Care</h4>
+                <p><strong>Email:</strong> shopyeah@gmail.com</p>
+                <p><strong>Mobile:</strong> 09123456789</p>
+                <p><strong>Telephone:</strong> +2123456</p>
+                <p><strong>Hours:</strong> Mon–Sat: 9:00 AM – 6:00 PM PHT</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SHOPYEAH Philippines. All rights reserved.</p>
+                <div class="payment-badges">
+                    <span class="pay-pill">Cash On Delivery</span>
+                    <span class="pay-pill">GCash</span>
+                    <span class="pay-pill">Maya</span>
+                    <span class="pay-pill">Visa / Mastercard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -14,6 +14,158 @@
   const VALID_PROMO_CODE = 'SHOPYEAH100';
   const PROMO_DISCOUNT_AMOUNT = 100;
 
+  const BUY_NOW_STORAGE_KEY = 'shopyeah_buy_now_item';
+  const MAX_QTY = 10;
+
+  /* ==========================================================================
+     Product Options (color, storage, memory, size, add-ons)
+     --------------------------------------------------------------------------
+     Keyed by product id. The value flagged `default` (or the first value) is
+     pre-selected and priced at +0. `delta` is the peso change vs. the listed
+     price. Products with no entry here simply have no options.
+     To edit prices/colors, change this table only.
+     ========================================================================== */
+  const COLOR = (label, hex) => ({ label, hex });
+  const OPT = (label, delta = 0, isDefault = false) => ({ label, delta, default: isDefault });
+  const colors = (name, values) => ({ name, kind: 'color', values });
+  const choices = (name, values) => ({ name, kind: 'chip', values });
+
+  const PRODUCT_OPTIONS = {
+    // Smartphones
+    1: {
+      title: 'Apple iPhone 15 Pro Max',
+      groups: [
+        colors('Color', [COLOR('Natural Titanium', '#b9b3a8'), COLOR('Blue Titanium', '#3f4a5a'), COLOR('White Titanium', '#e8e6e1'), COLOR('Black Titanium', '#2b2c2e')]),
+        choices('Storage', [OPT('256GB'), OPT('512GB', 9000), OPT('1TB', 20000)]),
+      ],
+    },
+    2: {
+      title: 'Samsung Galaxy S24 Ultra 5G',
+      groups: [
+        colors('Color', [COLOR('Titanium Black', '#2a2a2c'), COLOR('Titanium Gray', '#8d8f92'), COLOR('Titanium Violet', '#8f84a8'), COLOR('Titanium Yellow', '#e3d38a')]),
+        choices('Storage', [OPT('256GB', -5000), OPT('512GB', 0, true), OPT('1TB', 10000)]),
+      ],
+    },
+    3: {
+      title: 'POCO X6 Pro 5G',
+      groups: [
+        colors('Color', [COLOR('Black', '#1f1f22'), COLOR('Gray', '#8b8e94'), COLOR('Yellow', '#f2d12e')]),
+        choices('Memory + Storage', [OPT('8GB + 256GB', -2000), OPT('12GB + 512GB', 0, true)]),
+      ],
+    },
+    4: {
+      groups: [
+        colors('Color', [COLOR('Midnight Black', '#222428'), COLOR('Aurora Purple', '#a995d6'), COLOR('Moonlight White', '#eef0f2')]),
+        choices('Memory + Storage', [OPT('8GB + 256GB'), OPT('12GB + 512GB', 3000)]),
+      ],
+    },
+    // Laptops
+    5: {
+      title: 'Apple MacBook Air 13.6" M2 Chip',
+      groups: [
+        colors('Color', [COLOR('Midnight', '#2e3642'), COLOR('Starlight', '#efe6d8'), COLOR('Space Gray', '#7d7e80'), COLOR('Silver', '#d9dadc')]),
+        choices('Memory', [OPT('8GB'), OPT('16GB', 9000)]),
+        choices('Storage', [OPT('256GB'), OPT('512GB', 10000), OPT('1TB', 22000)]),
+      ],
+    },
+    6: {
+      groups: [
+        choices('Memory', [OPT('16GB'), OPT('32GB', 4500)]),
+        choices('Storage', [OPT('512GB'), OPT('1TB', 3500)]),
+      ],
+    },
+    7: {
+      groups: [
+        choices('Memory', [OPT('8GB'), OPT('16GB', 2500)]),
+        choices('Storage', [OPT('512GB'), OPT('1TB', 3000)]),
+      ],
+    },
+    8: {
+      groups: [
+        colors('Color', [COLOR('Arctic Grey', '#b8bcc2'), COLOR('Abyss Blue', '#2f4a73')]),
+        choices('Storage', [OPT('512GB'), OPT('1TB', 2500)]),
+      ],
+    },
+    // Audio
+    9: {
+      groups: [choices('Ear tip size', [OPT('XS'), OPT('S'), OPT('M', 0, true), OPT('L')])],
+    },
+    10: {
+      groups: [colors('Color', [COLOR('Black', '#1e1e20'), COLOR('Silver', '#d6d6d6'), COLOR('Midnight Blue', '#1f2f4f')])],
+    },
+    11: {
+      groups: [colors('Color', [COLOR('Black & Brass', '#1c1c1c'), COLOR('Cream', '#efe4cc')])],
+    },
+    12: {
+      groups: [colors('Color', [COLOR('Black', '#1c1c1c'), COLOR('Blue', '#2a6ad6'), COLOR('Red', '#d62f2f'), COLOR('Teal', '#1ea39a')])],
+    },
+    // Tablets
+    13: {
+      title: 'Apple iPad 10th Gen 10.9" Wi-Fi',
+      groups: [
+        colors('Color', [COLOR('Blue', '#6fa0d6'), COLOR('Pink', '#eba4b8'), COLOR('Yellow', '#f0d56c'), COLOR('Silver', '#d9dadc')]),
+        choices('Storage', [OPT('64GB'), OPT('256GB', 10000)]),
+      ],
+    },
+    14: {
+      title: 'Xiaomi Pad 6',
+      groups: [
+        colors('Color', [COLOR('Gravity Gray', '#6d7076'), COLOR('Mist Blue', '#9fb7cf')]),
+        choices('Memory + Storage', [OPT('6GB + 128GB', -3000), OPT('8GB + 256GB', 0, true)]),
+      ],
+    },
+    15: {
+      title: 'Samsung Galaxy Tab S9 FE 10.9" with S-Pen',
+      groups: [
+        colors('Color', [COLOR('Gray', '#7c7f85'), COLOR('Mint', '#b5dccb'), COLOR('Lavender', '#c3b7e0')]),
+        choices('Storage', [OPT('128GB'), OPT('256GB', 3500)]),
+      ],
+    },
+    // Wearables
+    16: {
+      title: 'Apple Watch Series 9 GPS',
+      groups: [
+        colors('Color', [COLOR('Midnight', '#232a35'), COLOR('Starlight', '#eee6d8'), COLOR('Pink', '#f1c9c9'), COLOR('Silver', '#d9dadc')]),
+        choices('Case size', [OPT('41mm'), OPT('45mm', 2000)]),
+      ],
+    },
+    17: {
+      title: 'Samsung Galaxy Watch 6 Bluetooth',
+      groups: [
+        colors('Color', [COLOR('Graphite', '#3a3b3f'), COLOR('Silver', '#d3d3d6')]),
+        choices('Case size', [OPT('40mm', -1000), OPT('44mm', 0, true)]),
+      ],
+    },
+    18: {
+      groups: [colors('Strap color', [COLOR('Black', '#1c1c1c'), COLOR('Pink', '#f2a1b8'), COLOR('Blue', '#3b82f6')])],
+    },
+    19: {
+      groups: [colors('Strap', [COLOR('Black', '#202022'), COLOR('Brown', '#7a5238'), COLOR('Green', '#5b7a5a')])],
+    },
+    // Accessories
+    21: {
+      groups: [colors('Color', [COLOR('White', '#f2f2f2'), COLOR('Black', '#1d1d1f')])],
+    },
+    22: {
+      groups: [colors('Color', [COLOR('Space Gray', '#6b6d72'), COLOR('Silver', '#d4d6d9')])],
+    },
+    // Gaming
+    23: {
+      groups: [
+        colors('Joy-Con color', [COLOR('White', '#eeeeee'), COLOR('Neon Blue / Neon Red', 'linear-gradient(90deg,#00c3e3 50%,#ff4554 50%)')]),
+        choices('Add-on', [OPT('None'), OPT('128GB microSD card', 1200), OPT('256GB microSD card', 2000)]),
+      ],
+    },
+    24: {
+      groups: [choices('Add-on', [OPT('None'), OPT('Extra DualSense controller', 4000)])],
+    },
+  };
+
+  let buyNowMode = false;
+  let buyNowModalShown = false;
+  let detailState = null;
+  let detailLastFocus = null;
+
   // Cached product catalog
   let allProducts = [];
   let activeCategory = 'All';
@@ -44,22 +196,72 @@
     }
   }
 
-  function addToCart(product, quantity = 1, triggerBtn = null) {
+  /* A cart line is unique per product + chosen options (e.g. "1|Blue Titanium|512GB").
+     Older saved carts have no key, so fall back to the product id. */
+  function itemKey(item) {
+    return item.key || String(item.id);
+  }
+
+  function getBuyNowItem() {
+    try {
+      const data = sessionStorage.getItem(BUY_NOW_STORAGE_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setBuyNowItem(item) {
+    try {
+      if (item) sessionStorage.setItem(BUY_NOW_STORAGE_KEY, JSON.stringify(item));
+      else sessionStorage.removeItem(BUY_NOW_STORAGE_KEY);
+    } catch (e) {
+      console.error('Error saving Buy Now item', e);
+    }
+  }
+
+  /* On the cart page the visible items are either the saved cart or the single Buy Now item. */
+  function getCartItems() {
+    if (buyNowMode) {
+      const item = getBuyNowItem();
+      return item ? [item] : [];
+    }
+    return getCart();
+  }
+
+  function setCartItems(items) {
+    if (buyNowMode) {
+      setBuyNowItem(items[0] || null);
+      window.dispatchEvent(new CustomEvent('cart-updated', { detail: { cart: items } }));
+    } else {
+      saveCart(items);
+    }
+  }
+
+  function buildCartItem(product, variant, quantity) {
+    return {
+      id: product.id,
+      key: variant.key,
+      name: variant.title,
+      category: product.category,
+      price: variant.price,
+      originalPrice: variant.originalPrice,
+      image: product.image,
+      quantity: quantity,
+      variantLabel: variant.label,
+      options: variant.options,
+    };
+  }
+
+  function addToCart(product, quantity = 1, triggerBtn = null, variant = null) {
+    const v = variant || computeVariant(product, defaultSelections(getProductConfig(product)));
     const cart = getCart();
-    const existingIndex = cart.findIndex((item) => item.id === product.id);
+    const existingIndex = cart.findIndex((item) => itemKey(item) === v.key);
 
     if (existingIndex > -1) {
       cart[existingIndex].quantity += quantity;
     } else {
-      cart.push({
-        id: product.id,
-        name: product.name,
-        category: product.category,
-        price: product.price,
-        originalPrice: product.originalPrice || product.price,
-        image: product.image,
-        quantity: quantity,
-      });
+      cart.push(buildCartItem(product, v, quantity));
     }
 
     saveCart(cart);
@@ -80,24 +282,29 @@
       }, 1400);
     }
 
-    showToast(`Added "${product.name}" to cart!`, 'success');
+    showToast(`Added "${v.title}"${v.label ? ` (${v.label})` : ''} to cart!`, 'success');
   }
 
-  function updateCartQuantity(productId, newQty) {
-    let cart = getCart();
+  function buyNow(product, quantity, variant) {
+    setBuyNowItem(buildCartItem(product, variant, quantity));
+    window.location.href = 'cart.html?buynow=1';
+  }
+
+  function updateCartQuantity(key, newQty) {
+    let cart = getCartItems();
     if (newQty <= 0) {
-      cart = cart.filter((item) => item.id !== productId);
+      cart = cart.filter((item) => itemKey(item) !== key);
       showToast('Item removed from cart', 'info');
     } else {
-      const item = cart.find((i) => i.id === productId);
+      const item = cart.find((i) => itemKey(i) === key);
       if (item) item.quantity = newQty;
     }
-    saveCart(cart);
+    setCartItems(cart);
   }
 
-  function removeFromCart(productId) {
-    const cart = getCart().filter((item) => item.id !== productId);
-    saveCart(cart);
+  function removeFromCart(key) {
+    const cart = getCartItems().filter((item) => itemKey(item) !== key);
+    setCartItems(cart);
     showToast('Item removed from cart', 'info');
   }
 
@@ -557,6 +764,7 @@
   }
 
   function createProductCardHTML(product) {
+    const hasOptions = productHasOptions(product);
     const discountPercent =
       product.originalPrice && product.originalPrice > product.price
         ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -569,7 +777,7 @@
           ${product.badge ? `<span class="badge-tag badge-promo">${escapeHtml(product.badge)}</span>` : ''}
         </div>
         
-        <div class="product-image-container">
+        <div class="product-image-container" data-open-product="${product.id}">
           <img 
             src="${escapeHtml(product.image)}" 
             alt="${escapeHtml(product.name)}" 
@@ -582,7 +790,7 @@
         </div>
 
         <div class="product-category-text">${escapeHtml(product.category)}</div>
-        <h3 class="product-title" title="${escapeHtml(product.name)}">${escapeHtml(product.name)}</h3>
+        <h3 class="product-title" title="${escapeHtml(product.name)}"><button type="button" class="product-open-btn" data-open-product="${product.id}">${escapeHtml(product.name)}</button></h3>
 
         <div class="product-rating" aria-label="Rated ${product.rating} out of 5 stars with ${product.reviews} reviews">
           <div class="stars-wrapper" aria-hidden="true">${renderStars(product.rating)}</div>
@@ -602,14 +810,22 @@
           type="button" 
           class="btn-add-cart" 
           data-product-id="${product.id}" 
-          aria-label="Add ${escapeHtml(product.name)} to cart"
+          aria-label="${hasOptions ? 'Select options for' : 'Add'} ${escapeHtml(product.name)}${hasOptions ? '' : ' to cart'}"
         >
+          ${hasOptions ? `
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          Select Options` : `
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
-          Add to Cart
+          Add to Cart`}
         </button>
       </article>
     `;
@@ -617,14 +833,313 @@
 
   function attachProductGridEventListeners(container) {
     container.querySelectorAll('.btn-add-cart').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const productId = parseInt(btn.getAttribute('data-product-id'), 10);
         const product = allProducts.find((p) => p.id === productId);
-        if (product) {
+        if (!product) return;
+        if (productHasOptions(product)) {
+          openProductDetail(product.id, btn);
+        } else {
           addToCart(product, 1, btn);
         }
       });
     });
+
+    container.querySelectorAll('[data-open-product]').forEach((el) => {
+      el.addEventListener('click', () => {
+        openProductDetail(parseInt(el.getAttribute('data-open-product'), 10), el.matches('button') ? el : null);
+      });
+    });
+  }
+
+  /* ==========================================================================
+     Product Detail Modal (choose options, then Add to Cart or Buy Now)
+     ========================================================================== */
+
+  function getProductConfig(product) {
+    return PRODUCT_OPTIONS[product.id] || null;
+  }
+
+  function productHasOptions(product) {
+    const config = getProductConfig(product);
+    return !!(config && config.groups && config.groups.length);
+  }
+
+  function defaultSelections(config) {
+    const selections = {};
+    ((config && config.groups) || []).forEach((group) => {
+      const pick = group.values.find((v) => v.default) || group.values[0];
+      selections[group.name] = pick.label;
+    });
+    return selections;
+  }
+
+  /* Turns the chosen options into the price, name and key used by the cart. */
+  function computeVariant(product, selections) {
+    const config = getProductConfig(product);
+    const options = {};
+    const labels = [];
+    let delta = 0;
+
+    ((config && config.groups) || []).forEach((group) => {
+      const value = group.values.find((v) => v.label === selections[group.name]) || group.values[0];
+      options[group.name] = value.label;
+      labels.push(value.label);
+      delta += value.delta || 0;
+    });
+
+    const originalBase = product.originalPrice || product.price;
+    return {
+      key: [product.id, ...labels].join('|'),
+      title: (config && config.title) || product.name,
+      options: options,
+      label: labels.join(', '),
+      price: product.price + delta,
+      originalPrice: originalBase + delta,
+    };
+  }
+
+  function formatDelta(delta) {
+    if (!delta) return '';
+    return (delta > 0 ? '+' : '−') + formatPeso(Math.abs(delta));
+  }
+
+  function ensureDetailModal() {
+    let overlay = document.getElementById('product-detail-modal');
+    if (overlay) return overlay;
+
+    overlay = document.createElement('div');
+    overlay.id = 'product-detail-modal';
+    overlay.className = 'modal-overlay pd-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'pd-title');
+    overlay.innerHTML = `
+      <div class="modal-content pd-content">
+        <button type="button" class="modal-close-btn pd-close" id="pd-close" aria-label="Close product details">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div id="pd-body"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeProductDetail();
+    });
+    overlay.querySelector('#pd-close').addEventListener('click', closeProductDetail);
+
+    overlay.addEventListener('change', (e) => {
+      const input = e.target;
+      if (!detailState || !input.matches('input[data-group]')) return;
+      detailState.selections[input.getAttribute('data-group')] = input.value;
+      updateDetailDynamic();
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (!detailState) return;
+      const qtyBtn = e.target.closest('[data-pd-qty]');
+      if (qtyBtn) {
+        const step = qtyBtn.getAttribute('data-pd-qty') === 'inc' ? 1 : -1;
+        detailState.qty = Math.min(MAX_QTY, Math.max(1, detailState.qty + step));
+        updateDetailDynamic();
+        return;
+      }
+      const addBtn = e.target.closest('#pd-add');
+      if (addBtn) {
+        const { product, selections, qty } = detailState;
+        addToCart(product, qty, addBtn, computeVariant(product, selections));
+        return;
+      }
+      if (e.target.closest('#pd-buy')) {
+        const { product, selections, qty } = detailState;
+        buyNow(product, qty, computeVariant(product, selections));
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('is-active')) return;
+      if (e.key === 'Escape') {
+        closeProductDetail();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const focusable = overlay.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href]');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    return overlay;
+  }
+
+  function buildDetailHTML(state) {
+    const { product, config } = state;
+    const title = (config && config.title) || product.name;
+
+    const groupsHtml = ((config && config.groups) || [])
+      .map((group, gi) => {
+        const selected = state.selections[group.name];
+        const items = group.values
+          .map((v) => {
+            const checked = v.label === selected ? 'checked' : '';
+            const common = `type="radio" name="pd-opt-${gi}" value="${escapeHtml(v.label)}" data-group="${escapeHtml(group.name)}" ${checked}`;
+            if (group.kind === 'color') {
+              return `
+                <label class="pd-swatch" title="${escapeHtml(v.label)}">
+                  <input ${common} aria-label="${escapeHtml(v.label)}">
+                  <span class="pd-swatch-face" style="background:${escapeHtml(v.hex)}"></span>
+                </label>`;
+            }
+            const delta = formatDelta(v.delta);
+            return `
+              <label class="pd-chip">
+                <input ${common}>
+                <span class="pd-chip-face">
+                  <span class="pd-chip-label">${escapeHtml(v.label)}</span>
+                  ${delta ? `<span class="pd-chip-delta">${delta}</span>` : ''}
+                </span>
+              </label>`;
+          })
+          .join('');
+
+        return `
+          <div class="pd-group" role="radiogroup" aria-labelledby="pd-group-${gi}">
+            <div class="pd-group-head">
+              <span class="pd-group-name" id="pd-group-${gi}">${escapeHtml(group.name)}</span>
+              <span class="pd-group-value" data-selected-for="${escapeHtml(group.name)}">${escapeHtml(selected)}</span>
+            </div>
+            <div class="pd-options ${group.kind === 'color' ? 'pd-options-color' : 'pd-options-chip'}">${items}</div>
+          </div>`;
+      })
+      .join('');
+
+    return `
+      <div class="pd-layout">
+        <div class="pd-media">
+          <div class="pd-badges">
+            ${product.badge ? `<span class="badge-tag badge-promo">${escapeHtml(product.badge)}</span>` : ''}
+          </div>
+          <img src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}" class="pd-image"
+               onerror="this.src='https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80'" />
+        </div>
+
+        <div class="pd-info">
+          <div class="product-category-text">${escapeHtml(product.category)}</div>
+          <h2 class="pd-title" id="pd-title">${escapeHtml(title)}</h2>
+
+          <div class="product-rating" aria-label="Rated ${product.rating} out of 5 stars with ${product.reviews} reviews">
+            <div class="stars-wrapper" aria-hidden="true">${renderStars(product.rating)}</div>
+            <span class="rating-score">${product.rating.toFixed(1)}</span>
+            <span class="rating-count">(${product.reviews} reviews)</span>
+          </div>
+
+          <div class="pd-price-row" aria-live="polite">
+            <span class="pd-price" id="pd-price"></span>
+            <span class="original-price" id="pd-original"></span>
+            <span class="discount-pill" id="pd-discount"></span>
+          </div>
+
+          <p class="pd-desc">${escapeHtml(product.description || '')}</p>
+
+          ${groupsHtml ? `<div class="pd-groups">${groupsHtml}</div>` : ''}
+
+          <div class="pd-qty-row">
+            <span class="pd-group-name" id="pd-qty-label">Quantity</span>
+            <div class="pd-qty" role="group" aria-labelledby="pd-qty-label">
+              <button type="button" class="pd-qty-btn" data-pd-qty="dec" id="pd-qty-dec" aria-label="Decrease quantity">−</button>
+              <output class="pd-qty-value" id="pd-qty-value" aria-live="polite">1</output>
+              <button type="button" class="pd-qty-btn" data-pd-qty="inc" id="pd-qty-inc" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <div class="pd-actions">
+            <div class="pd-total-row">
+              <span>Total</span>
+              <strong id="pd-total"></strong>
+            </div>
+            <div class="pd-buttons">
+              <button type="button" class="btn btn-secondary btn-lg pd-btn" id="pd-add">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Add to Cart</span>
+              </button>
+              <button type="button" class="btn btn-lg pd-btn" id="pd-buy">Buy Now</button>
+            </div>
+            <p class="pd-perks">Official warranty. Free shipping on orders over ${formatPeso(FREE_SHIPPING_THRESHOLD)}. Pay by COD, GCash, Maya or card.</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /* Updates only the parts that change with the options, so keyboard focus is never lost. */
+  function updateDetailDynamic() {
+    if (!detailState) return;
+    const { product, selections, qty } = detailState;
+    const v = computeVariant(product, selections);
+    const byId = (id) => document.getElementById(id);
+
+    byId('pd-price').textContent = formatPeso(v.price);
+
+    const hasDiscount = v.originalPrice > v.price;
+    const original = byId('pd-original');
+    const pill = byId('pd-discount');
+    original.hidden = !hasDiscount;
+    pill.hidden = !hasDiscount;
+    if (hasDiscount) {
+      original.textContent = formatPeso(v.originalPrice);
+      pill.textContent = '-' + Math.round(((v.originalPrice - v.price) / v.originalPrice) * 100) + '%';
+    }
+
+    byId('pd-total').textContent = formatPeso(v.price * qty);
+    byId('pd-qty-value').textContent = qty;
+    byId('pd-qty-dec').disabled = qty <= 1;
+    byId('pd-qty-inc').disabled = qty >= MAX_QTY;
+
+    document.querySelectorAll('#product-detail-modal [data-selected-for]').forEach((el) => {
+      el.textContent = selections[el.getAttribute('data-selected-for')] || '';
+    });
+  }
+
+  function openProductDetail(productId, triggerEl) {
+    const product = allProducts.find((p) => p.id === productId);
+    if (!product) return;
+
+    const overlay = ensureDetailModal();
+    const config = getProductConfig(product);
+    detailState = { product, config, selections: defaultSelections(config), qty: 1 };
+    detailLastFocus = triggerEl || document.activeElement;
+
+    document.getElementById('pd-body').innerHTML = buildDetailHTML(detailState);
+    updateDetailDynamic();
+
+    overlay.querySelector('.pd-content').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    overlay.classList.add('is-active');
+    overlay.querySelector('#pd-close').focus();
+  }
+
+  function closeProductDetail() {
+    const overlay = document.getElementById('product-detail-modal');
+    if (!overlay) return;
+    overlay.classList.remove('is-active');
+    document.body.style.overflow = '';
+    detailState = null;
+    if (detailLastFocus && typeof detailLastFocus.focus === 'function') detailLastFocus.focus();
   }
 
   /* Catalog Page Controller (product.html) */
@@ -812,6 +1327,9 @@
     const cartRoot = document.getElementById('cart-page-root');
     if (!cartRoot) return;
 
+    buyNowMode = new URLSearchParams(window.location.search).get('buynow') === '1' && !!getBuyNowItem();
+    if (!buyNowMode) setBuyNowItem(null);
+
     renderCartView();
 
     // Re-render when cart updates
@@ -824,7 +1342,8 @@
     const cartRoot = document.getElementById('cart-page-root');
     if (!cartRoot) return;
 
-    const cart = getCart();
+    const cart = getCartItems();
+    const itemCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
 
     if (cart.length === 0) {
       cartRoot.innerHTML = `
@@ -867,34 +1386,41 @@
         <!-- Cart Items List -->
         <section class="cart-items-panel" aria-label="Cart Items">
           <div class="cart-panel-header">
-            <h2 class="cart-panel-title">Your Items (${getCartCount()})</h2>
-            <button type="button" class="cart-clear-btn" id="btn-clear-cart">Clear Cart</button>
+            <h2 class="cart-panel-title">${buyNowMode ? 'Buy Now' : 'Your Items'} (${itemCount})</h2>
+            ${buyNowMode ? '' : '<button type="button" class="cart-clear-btn" id="btn-clear-cart">Clear Cart</button>'}
           </div>
+
+          ${buyNowMode ? `
+          <div class="buynow-banner">
+            <span>You're checking out this item only. Your saved cart is unchanged.</span>
+            <a href="cart.html">View full cart</a>
+          </div>` : ''}
 
           <div class="cart-items-list">
             ${cart
               .map(
                 (item) => `
-              <div class="cart-item-row" data-id="${item.id}">
+              <div class="cart-item-row" data-key="${escapeHtml(itemKey(item))}">
                 <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="cart-item-thumb" loading="lazy" />
                 
                 <div class="cart-item-details">
                   <span class="cart-item-category">${escapeHtml(item.category)}</span>
                   <h3 class="cart-item-title">${escapeHtml(item.name)}</h3>
+                  ${item.variantLabel ? `<span class="cart-item-variant">${escapeHtml(item.variantLabel)}</span>` : ''}
                   <span class="cart-item-unit-price">${formatPeso(item.price)} each</span>
                 </div>
 
                 <div class="qty-controller">
-                  <button type="button" class="qty-btn btn-qty-dec" data-id="${item.id}" aria-label="Decrease quantity for ${escapeHtml(item.name)}">−</button>
+                  <button type="button" class="qty-btn btn-qty-dec" data-key="${escapeHtml(itemKey(item))}" aria-label="Decrease quantity for ${escapeHtml(item.name)}">−</button>
                   <input type="text" readonly class="qty-input" value="${item.quantity}" aria-label="Quantity">
-                  <button type="button" class="qty-btn btn-qty-inc" data-id="${item.id}" aria-label="Increase quantity for ${escapeHtml(item.name)}">+</button>
+                  <button type="button" class="qty-btn btn-qty-inc" data-key="${escapeHtml(itemKey(item))}" aria-label="Increase quantity for ${escapeHtml(item.name)}">+</button>
                 </div>
 
                 <div class="cart-item-subtotal">
                   ${formatPeso(item.price * item.quantity)}
                 </div>
 
-                <button type="button" class="cart-item-remove" data-id="${item.id}" aria-label="Remove ${escapeHtml(item.name)} from cart">
+                <button type="button" class="cart-item-remove" data-key="${escapeHtml(itemKey(item))}" aria-label="Remove ${escapeHtml(item.name)} from cart">
                   <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                 </button>
               </div>
@@ -1019,12 +1545,12 @@
           <form id="checkout-form">
             <div class="form-group">
               <label class="form-label" for="checkout-name">Full Name *</label>
-              <input type="text" id="checkout-name" class="form-input" required placeholder="e.g. Juan Dela Cruz">
+              <input type="text" id="checkout-name" class="form-input" required placeholder="e.g. Juan Dela Cruz" value="${escapeHtml((getSession() || {}).name || '')}">
             </div>
 
             <div class="form-group">
               <label class="form-label" for="checkout-phone">Mobile Phone Number *</label>
-              <input type="tel" id="checkout-phone" class="form-input" required placeholder="e.g. 09171234567">
+              <input type="tel" id="checkout-phone" class="form-input" required placeholder="e.g. 09171234567" value="${escapeHtml((getSession() || {}).phone || '')}">
             </div>
 
             <div class="form-group">
@@ -1085,11 +1611,10 @@
     // Quantity Decrement
     document.querySelectorAll('.btn-qty-dec').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const id = parseInt(btn.getAttribute('data-id'), 10);
-        const cart = getCart();
-        const item = cart.find((i) => i.id === id);
+        const key = btn.getAttribute('data-key');
+        const item = getCartItems().find((i) => itemKey(i) === key);
         if (item) {
-          updateCartQuantity(id, item.quantity - 1);
+          updateCartQuantity(key, item.quantity - 1);
         }
       });
     });
@@ -1097,11 +1622,10 @@
     // Quantity Increment
     document.querySelectorAll('.btn-qty-inc').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const id = parseInt(btn.getAttribute('data-id'), 10);
-        const cart = getCart();
-        const item = cart.find((i) => i.id === id);
+        const key = btn.getAttribute('data-key');
+        const item = getCartItems().find((i) => itemKey(i) === key);
         if (item) {
-          updateCartQuantity(id, item.quantity + 1);
+          updateCartQuantity(key, item.quantity + 1);
         }
       });
     });
@@ -1109,8 +1633,7 @@
     // Remove item
     document.querySelectorAll('.cart-item-remove').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const id = parseInt(btn.getAttribute('data-id'), 10);
-        removeFromCart(id);
+        removeFromCart(btn.getAttribute('data-key'));
       });
     });
 
@@ -1177,6 +1700,12 @@
       });
     }
 
+    // Buy Now goes straight to the checkout form
+    if (buyNowMode && !buyNowModalShown && checkoutModal) {
+      buyNowModalShown = true;
+      setTimeout(() => checkoutModal.classList.add('is-active'), 120);
+    }
+
     // Checkout Form Submission
     if (checkoutForm) {
       checkoutForm.addEventListener('submit', (e) => {
@@ -1197,8 +1726,12 @@
         // Hide checkout modal
         if (checkoutModal) checkoutModal.classList.remove('is-active');
 
-        // Clear cart
-        localStorage.removeItem(CART_STORAGE_KEY);
+        // Clear what was just ordered (Buy Now orders leave the saved cart alone)
+        if (buyNowMode) {
+          setBuyNowItem(null);
+        } else {
+          localStorage.removeItem(CART_STORAGE_KEY);
+        }
         localStorage.removeItem(PROMO_CODE_STORAGE_KEY);
         updateCartBadge();
 
@@ -1262,11 +1795,334 @@
   }
 
   /* ==========================================================================
+     Accounts & Login (login.html)
+     --------------------------------------------------------------------------
+     FRONT-END DEMO ONLY: accounts live in this browser's localStorage, so they
+     are not shared across devices and are not secure. Replace the functions in
+     this section with calls to a real backend before accepting real customers.
+     ========================================================================== */
+
+  const USERS_STORAGE_KEY = 'shopyeah_users_v1';
+  const SESSION_STORAGE_KEY = 'shopyeah_session_v1';
+  const MIN_PASSWORD_LENGTH = 8;
+
+  function getUsers() {
+    try {
+      const data = localStorage.getItem(USERS_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveUsers(users) {
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+  }
+
+  async function hashPassword(password, salt) {
+    const text = salt + ':' + password;
+    if (window.crypto && window.crypto.subtle) {
+      const bytes = new TextEncoder().encode(text);
+      const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
+    }
+    // Fallback for browsers without Web Crypto (e.g. some file:// setups)
+    let h = 5381;
+    for (let i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
+    return 'x' + (h >>> 0).toString(16);
+  }
+
+  function makeSalt() {
+    if (window.crypto && window.crypto.getRandomValues) {
+      return Array.from(window.crypto.getRandomValues(new Uint8Array(8))).map((b) => b.toString(16).padStart(2, '0')).join('');
+    }
+    return String(Date.now()) + Math.random().toString(16).slice(2);
+  }
+
+  function getSession() {
+    try {
+      const data = localStorage.getItem(SESSION_STORAGE_KEY) || sessionStorage.getItem(SESSION_STORAGE_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setSession(user, remember) {
+    const session = { name: user.name, email: user.email, phone: user.phone || '' };
+    try {
+      localStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      (remember ? localStorage : sessionStorage).setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+    } catch (e) {
+      console.error('Could not save session', e);
+    }
+  }
+
+  function clearSession() {
+    try {
+      localStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  /* Header "Login" link turns into the customer's first name once signed in. */
+  function updateAccountUI() {
+    const session = getSession();
+    const label = document.getElementById('account-label');
+    const link = document.getElementById('account-link');
+    const mobileLink = document.getElementById('mobile-account-link');
+    const firstName = session && session.name ? session.name.split(' ')[0] : '';
+
+    if (label) label.textContent = session ? firstName : 'Login';
+    if (link) link.setAttribute('aria-label', session ? `Your account (${session.name})` : 'Log in or create an account');
+    if (mobileLink) mobileLink.textContent = session ? `My Account (${firstName})` : 'Login';
+  }
+
+  /* Only allow redirecting back to our own pages, never to another site. */
+  function getSafeNextUrl() {
+    const next = new URLSearchParams(window.location.search).get('next') || '';
+    return /^[a-z0-9_-]+\.html(\?[^#\s]*)?$/i.test(next) ? next : 'index.html';
+  }
+
+  function initAuthPage() {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    if (!loginForm || !registerForm) return;
+
+    const formsWrap = document.getElementById('auth-forms');
+    const signedInWrap = document.getElementById('auth-signed-in');
+    const title = document.getElementById('auth-title');
+    const subtitle = document.getElementById('auth-subtitle');
+    const tabs = {
+      login: document.getElementById('tab-login'),
+      register: document.getElementById('tab-register'),
+    };
+    const copy = {
+      login: { title: 'Welcome back', subtitle: 'Sign in to check out faster and keep track of your orders.' },
+      register: { title: 'Create your account', subtitle: 'It takes a minute. Your details are saved on this device.' },
+    };
+
+    /* ---- Signed-in view ---- */
+    function showSignedIn(session) {
+      formsWrap.hidden = true;
+      signedInWrap.hidden = false;
+      title.textContent = `Hi, ${session.name.split(' ')[0]}`;
+      subtitle.textContent = 'You are signed in.';
+      document.getElementById('auth-user-name').textContent = session.name;
+      document.getElementById('auth-user-email').textContent = session.email;
+      document.getElementById('auth-user-phone').textContent = session.phone || 'Not provided';
+    }
+
+    function showForms(which) {
+      signedInWrap.hidden = true;
+      formsWrap.hidden = false;
+      switchTab(which, false);
+    }
+
+    function switchTab(which, moveFocus) {
+      const isLogin = which === 'login';
+      loginForm.hidden = !isLogin;
+      registerForm.hidden = isLogin;
+      Object.keys(tabs).forEach((key) => {
+        const active = key === which;
+        tabs[key].setAttribute('aria-selected', String(active));
+        tabs[key].tabIndex = active ? 0 : -1;
+      });
+      title.textContent = copy[which].title;
+      subtitle.textContent = copy[which].subtitle;
+      if (moveFocus) tabs[which].focus();
+    }
+
+    Object.keys(tabs).forEach((key) => {
+      tabs[key].addEventListener('click', () => switchTab(key, false));
+      tabs[key].addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          switchTab(key === 'login' ? 'register' : 'login', true);
+        }
+      });
+    });
+    document.querySelectorAll('[data-auth-switch]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        switchTab(btn.getAttribute('data-auth-switch'), false);
+        const first = (btn.getAttribute('data-auth-switch') === 'login' ? loginForm : registerForm).querySelector('input');
+        if (first) first.focus();
+      });
+    });
+
+    /* ---- Show / hide password ---- */
+    document.querySelectorAll('.password-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.getAttribute('data-target'));
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.textContent = show ? 'Hide' : 'Show';
+        btn.setAttribute('aria-pressed', String(show));
+      });
+    });
+
+    /* ---- Field errors ---- */
+    function setFieldError(input, message) {
+      const err = document.getElementById(input.id + '-error');
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (err) err.textContent = message || '';
+    }
+
+    function setFormError(form, message) {
+      const box = form.querySelector('.auth-form-error');
+      if (box) {
+        box.textContent = message || '';
+        box.hidden = !message;
+      }
+    }
+
+    function clearErrors(form) {
+      form.querySelectorAll('input').forEach((i) => setFieldError(i, ''));
+      setFormError(form, '');
+    }
+
+    function focusFirstInvalid(form) {
+      const bad = form.querySelector('[aria-invalid="true"]');
+      if (bad) bad.focus();
+    }
+
+    function setBusy(btn, busy, busyText) {
+      if (busy) {
+        btn.dataset.label = btn.textContent;
+        btn.textContent = busyText;
+      } else if (btn.dataset.label) {
+        btn.textContent = btn.dataset.label;
+      }
+      btn.disabled = busy;
+    }
+
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    const phoneOk = (v) => /^(09|\+639)\d{9}$/.test(v.replace(/[\s-]/g, ''));
+
+    /* ---- Sign in ---- */
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors(loginForm);
+      const email = document.getElementById('login-email');
+      const password = document.getElementById('login-password');
+      const remember = document.getElementById('login-remember').checked;
+
+      if (!email.value.trim()) setFieldError(email, 'Enter your email address.');
+      else if (!emailOk(email.value.trim())) setFieldError(email, 'Enter a valid email, like name@example.com.');
+      if (!password.value) setFieldError(password, 'Enter your password.');
+      if (loginForm.querySelector('[aria-invalid="true"]')) {
+        focusFirstInvalid(loginForm);
+        return;
+      }
+
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      setBusy(submitBtn, true, 'Signing in…');
+      const user = getUsers().find((u) => u.email === email.value.trim().toLowerCase());
+      const hash = user ? await hashPassword(password.value, user.salt) : null;
+
+      if (!user || hash !== user.hash) {
+        setBusy(submitBtn, false);
+        setFormError(loginForm, 'Incorrect email or password. Check them and try again, or create an account.');
+        return;
+      }
+
+      setSession(user, remember);
+      updateAccountUI();
+      showToast(`Welcome back, ${user.name.split(' ')[0]}!`, 'success');
+      setTimeout(() => { window.location.href = getSafeNextUrl(); }, 600);
+    });
+
+    document.getElementById('forgot-password-btn').addEventListener('click', () => {
+      showToast('Password reset is not available yet. Email shopyeah@gmail.com for help.', 'info');
+    });
+
+    /* ---- Create account ---- */
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors(registerForm);
+      const name = document.getElementById('register-name');
+      const email = document.getElementById('register-email');
+      const phone = document.getElementById('register-phone');
+      const password = document.getElementById('register-password');
+      const confirm = document.getElementById('register-confirm');
+
+      if (name.value.trim().length < 2) setFieldError(name, 'Enter your full name.');
+      if (!email.value.trim()) setFieldError(email, 'Enter your email address.');
+      else if (!emailOk(email.value.trim())) setFieldError(email, 'Enter a valid email, like name@example.com.');
+      if (!phone.value.trim()) setFieldError(phone, 'Enter your mobile number.');
+      else if (!phoneOk(phone.value.trim())) setFieldError(phone, 'Use a Philippine mobile number, like 09171234567.');
+      if (password.value.length < MIN_PASSWORD_LENGTH) setFieldError(password, `Use at least ${MIN_PASSWORD_LENGTH} characters.`);
+      if (!confirm.value) setFieldError(confirm, 'Re-enter your password.');
+      else if (confirm.value !== password.value) setFieldError(confirm, 'Passwords do not match.');
+
+      const users = getUsers();
+      const normalizedEmail = email.value.trim().toLowerCase();
+      if (!email.getAttribute('aria-invalid') || email.getAttribute('aria-invalid') === 'false') {
+        if (users.some((u) => u.email === normalizedEmail)) {
+          setFieldError(email, 'An account with this email already exists. Try signing in instead.');
+        }
+      }
+
+      if (registerForm.querySelector('[aria-invalid="true"]')) {
+        focusFirstInvalid(registerForm);
+        return;
+      }
+
+      const submitBtn = registerForm.querySelector('button[type="submit"]');
+      setBusy(submitBtn, true, 'Creating account…');
+      const salt = makeSalt();
+      const user = {
+        name: name.value.trim(),
+        email: normalizedEmail,
+        phone: phone.value.replace(/[\s-]/g, ''),
+        salt: salt,
+        hash: await hashPassword(password.value, salt),
+        createdAt: new Date().toISOString(),
+      };
+
+      try {
+        users.push(user);
+        saveUsers(users);
+      } catch (err) {
+        setBusy(submitBtn, false);
+        setFormError(registerForm, 'We could not save your account because browser storage is unavailable.');
+        return;
+      }
+
+      setSession(user, true);
+      updateAccountUI();
+      showToast('Account created. Welcome to SHOPYEAH!', 'success');
+      setTimeout(() => { window.location.href = getSafeNextUrl(); }, 700);
+    });
+
+    /* ---- Log out ---- */
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      clearSession();
+      updateAccountUI();
+      showToast('You have been signed out', 'info');
+      showForms('login');
+    });
+
+    /* ---- Initial state ---- */
+    const session = getSession();
+    if (session) {
+      showSignedIn(session);
+    } else {
+      showForms(new URLSearchParams(window.location.search).get('tab') === 'register' ? 'register' : 'login');
+    }
+  }
+
+  /* ==========================================================================
      Application Bootstrapper
      ========================================================================== */
 
   function initApp() {
     initHeader();
+    updateAccountUI();
+    initAuthPage();
     initHomePage();
     initCatalogPage();
     initCartPage();
