@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPYEAH - My Account & Settings</title>
+    <meta name="description" content="Manage your SHOPYEAH account details, delivery address, order history, and security settings.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="profile-page-root">
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar" role="region" aria-label="Promotional announcement">
+        <span><svg class="announcement-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" /></svg>Flash Sale! Free nationwide shipping on orders over ₱1,500 | Use code <strong>SHOPYEAH100</strong> for ₱100 OFF</span>
+    </div>
+
+    <!-- Sticky E-Commerce Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Brand Logo -->
+            <a href="index.html" class="brand-logo" aria-label="SHOPYEAH Homepage">
+                <svg viewBox="0 0 44 44" width="38" height="38" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="sy-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#1e56cf" />
+                        </linearGradient>
+                        <linearGradient id="sy-s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#f8fafc" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="44" height="44" rx="12" fill="url(#sy-logo-bg)" />
+                    <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                    <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="url(#sy-s-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                </svg>
+                <span>SHOP<span class="brand-highlight">YEAH</span></span>
+            </a>
+
+            <!-- Integrated Header Search Bar -->
+            <div class="header-search">
+                <form class="search-form header-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, Samsung, MacBook, PlayStation, AirPods..." 
+                        aria-label="Search products" 
+                        autocomplete="off" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Submit search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions: Cart button first, Profile button second -->
+            <div class="header-actions">
+                <a href="cart.html" class="cart-btn" aria-label="View shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Cart</span>
+                    <span id="cart-badge" class="cart-badge" aria-label="0 items in cart">0</span>
+                </a>
+
+                <a href="profile.html" class="account-btn active" aria-current="page" id="account-link" aria-label="My Account and Profile Settings">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span id="account-label">My Profile</span>
+                </a>
+
+                <button 
+                    type="button" 
+                    class="hamburger-btn" 
+                    id="hamburger-btn" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-nav" 
+                    aria-label="Toggle navigation menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="profile.html" class="active" id="mobile-account-link">My Profile</a></li>
+            </ul>
+            <div class="mobile-search-wrapper">
+                <form class="search-form mobile-search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        name="q" 
+                        placeholder="Search iPhone, MacBook, Sony..." 
+                        aria-label="Search products on mobile" 
+                    />
+                    <button type="submit" class="search-btn" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="page-header profile-page-header">
+            <h1 class="page-title">My Account &amp; Settings</h1>
+            <p class="page-subtitle">Manage your personal information, delivery addresses, order history, and security preferences.</p>
+        </div>
+
+        <div class="profile-layout">
+            <!-- Sidebar: User Snapshot & Tab Navigation -->
+            <aside class="profile-sidebar">
+                <div class="profile-user-summary">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <span id="profile-initials">SY</span>
+                    </div>
+                    <div class="profile-user-info">
+                        <h2 class="profile-user-name" id="sidebar-user-name">Loading...</h2>
+                        <p class="profile-user-email" id="sidebar-user-email">loading@example.com</p>
+                        <span class="profile-badge-tier">Verified Member</span>
+                    </div>
+                </div>
+
+                <nav class="profile-nav" aria-label="Profile Sections">
+                    <button type="button" class="profile-nav-btn active" data-tab="personal">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Personal Details</span>
+                    </button>
+
+                    <button type="button" class="profile-nav-btn" data-tab="address">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Delivery Addresses</span>
+                    </button>
+
+                    <button type="button" class="profile-nav-btn" data-tab="orders">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <span>Order History</span>
+                    </button>
+
+                    <button type="button" class="profile-nav-btn" data-tab="security">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Security &amp; Preferences</span>
+                    </button>
+                </nav>
+
+                <div class="profile-sidebar-actions">
+                    <a href="product.html" class="btn btn-secondary btn-block">Shop Famous Gadgets</a>
+                    <button type="button" class="btn btn-outline btn-block" id="profile-btn-logout">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area: Tab Panels -->
+            <div class="profile-main-panel">
+                <!-- Tab 1: Personal Details -->
+                <section class="profile-tab-content active" id="tab-panel-personal" aria-labelledby="personal-title">
+                    <div class="profile-card-header">
+                        <h2 class="profile-section-title" id="personal-title">Personal Details</h2>
+                        <p class="profile-section-desc">Keep your contact details up to date for smooth dispatch and notifications.</p>
+                    </div>
+
+                    <form id="profile-personal-form" class="profile-form">
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="profile-name">Full Name *</label>
+                                <input type="text" id="profile-name" class="form-input" required placeholder="e.g. Juan Dela Cruz" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="profile-phone">Mobile Phone Number *</label>
+                                <input type="tel" id="profile-phone" class="form-input" required placeholder="e.g. 09171234567" />
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="profile-email">Email Address</label>
+                                <input type="email" id="profile-email" class="form-input" readonly disabled />
+                                <small class="form-help-text">Email address is permanently linked to your account.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="profile-member-date">Member Since</label>
+                                <input type="text" id="profile-member-date" class="form-input" readonly disabled value="November 2026" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions-row">
+                            <button type="submit" class="btn btn-lg" id="btn-save-personal">Save Personal Details</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Tab 2: Delivery Addresses -->
+                <section class="profile-tab-content" id="tab-panel-address" aria-labelledby="address-title" hidden>
+                    <div class="profile-card-header">
+                        <h2 class="profile-section-title" id="address-title">Default Delivery Address</h2>
+                        <p class="profile-section-desc">This address will be automatically populated when you check out your gadgets.</p>
+                    </div>
+
+                    <form id="profile-address-form" class="profile-form">
+                        <div class="form-group">
+                            <label class="form-label" for="address-street">Street Address / House or Unit No. *</label>
+                            <input type="text" id="address-street" class="form-input" required placeholder="e.g. Block 12 Lot 3, Acacia Street" />
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="address-barangay">Barangay / District *</label>
+                                <input type="text" id="address-barangay" class="form-input" required placeholder="e.g. Barangay San Antonio" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="address-city">City / Municipality *</label>
+                                <input type="text" id="address-city" class="form-input" required placeholder="e.g. Pasig City" />
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="address-province">Province / Region *</label>
+                                <input type="text" id="address-province" class="form-input" required placeholder="e.g. Metro Manila" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="address-zip">Postal / Zip Code</label>
+                                <input type="text" id="address-zip" class="form-input" placeholder="e.g. 1600" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions-row">
+                            <button type="submit" class="btn btn-lg" id="btn-save-address">Save Delivery Address</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Tab 3: Order History -->
+                <section class="profile-tab-content" id="tab-panel-orders" aria-labelledby="orders-title" hidden>
+                    <div class="profile-card-header">
+                        <h2 class="profile-section-title" id="orders-title">Order History &amp; Tracking</h2>
+                        <p class="profile-section-desc">Review your recent gadget purchases, tracking IDs, and delivery statuses.</p>
+                    </div>
+
+                    <div class="orders-list-container" id="profile-orders-list">
+                        <!-- Populated by app.js with mock + live placed orders -->
+                    </div>
+                </section>
+
+                <!-- Tab 4: Security & Preferences -->
+                <section class="profile-tab-content" id="tab-panel-security" aria-labelledby="security-title" hidden>
+                    <div class="profile-card-header">
+                        <h2 class="profile-section-title" id="security-title">Security &amp; Account Preferences</h2>
+                        <p class="profile-section-desc">Manage your password, login credentials, and communication preferences.</p>
+                    </div>
+
+                    <form id="profile-password-form" class="profile-form">
+                        <h3 class="profile-subsection-title">Change Password</h3>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="change-pwd-current">Current Password</label>
+                                <input type="password" id="change-pwd-current" class="form-input" placeholder="Enter current password" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="change-pwd-new">New Password</label>
+                                <input type="password" id="change-pwd-new" class="form-input" placeholder="At least 8 characters" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions-row" style="margin-bottom:2rem;">
+                            <button type="submit" class="btn btn-secondary" id="btn-change-pwd">Update Password</button>
+                        </div>
+                    </form>
+
+                    <hr class="profile-divider" />
+
+                    <div class="profile-preferences-section">
+                        <h3 class="profile-subsection-title">Notification Preferences</h3>
+                        <label class="check-row" style="margin-bottom:0.75rem;">
+                            <input type="checkbox" id="pref-sms" checked />
+                            <span>Receive real-time SMS delivery tracking alerts on your mobile phone</span>
+                        </label>
+                        <label class="check-row" style="margin-bottom:0.75rem;">
+                            <input type="checkbox" id="pref-flash-deals" checked />
+                            <span>Get notified about exclusive SHOPYEAH Flash Sales and discounts</span>
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional E-Commerce Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo">
+                    <svg viewBox="0 0 44 44" width="36" height="36" fill="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="sy-footer-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#1e56cf" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="44" height="44" rx="12" fill="url(#sy-footer-logo-bg)" />
+                        <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+                        <path d="M29.5 15.2C27.8 13.2 25 12 21.8 12C17.2 12 14 14.8 14 18.5C14 24 28.5 22.2 28.5 27.6C28.5 30 26 32 21.8 32C17.8 32 14.8 30 13 27.5" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="30" cy="13" r="2.2" fill="#f5f874" />
+                    </svg>
+                    <span>SHOP<span style="color:var(--color-tertiary)">YEAH</span></span>
+                </a>
+                <p>
+                    Your premier online gadget and electronics storefront in the Philippines. Providing authentic smartphones, laptops, audio gear, and gaming tech with dependable nationwide support.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Browse Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="product.html?category=Smartphones">Smartphones</a></li>
+                    <li><a href="product.html?category=Laptops">Laptops</a></li>
+                    <li><a href="product.html?category=Audio">Audio</a></li>
+                    <li><a href="product.html?category=Tablets">Tablets</a></li>
+                    <li><a href="product.html?category=Wearables">Wearables</a></li>
+                    <li><a href="product.html?category=Accessories">Accessories</a></li>
+                    <li><a href="product.html?category=Gaming">Gaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h4>Customer Care</h4>
+                <p><strong>Email:</strong> shopyeah@gmail.com</p>
+                <p><strong>Mobile:</strong> 09123456789</p>
+                <p><strong>Telephone:</strong> +2123456</p>
+                <p><strong>Hours:</strong> Mon–Sat: 9:00 AM – 6:00 PM PHT</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SHOPYEAH Philippines. All rights reserved.</p>
+                <div class="payment-badges">
+                    <span class="pay-pill">Cash On Delivery</span>
+                    <span class="pay-pill">GCash</span>
+                    <span class="pay-pill">Maya</span>
+                    <span class="pay-pill">Visa / Mastercard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
+

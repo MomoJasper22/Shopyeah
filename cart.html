@@ -68,15 +68,8 @@
                 </ul>
             </nav>
 
-            <!-- Header Actions -->
+            <!-- Header Actions: Cart first, Login/Account second -->
             <div class="header-actions">
-                <a href="login.html" class="account-btn" id="account-link" aria-label="Log in or create an account">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <span id="account-label">Login</span>
-                </a>
                 <a href="cart.html" class="cart-btn active" aria-label="View shopping cart">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -85,6 +78,13 @@
                     </svg>
                     <span>Cart</span>
                     <span id="cart-badge" class="cart-badge" aria-label="0 items in cart">0</span>
+                </a>
+                <a href="auth.html" class="account-btn" id="account-link" aria-label="Log in or create an account">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span id="account-label">Login</span>
                 </a>
 
                 <button 
@@ -109,7 +109,7 @@
                 <li><a href="product.html">Products</a></li>
                 <li><a href="aboutus.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="login.html" id="mobile-account-link">Login</a></li>
+                <li><a href="auth.html" id="mobile-account-link">Login</a></li>
             </ul>
             <div class="mobile-search-wrapper">
                 <form class="search-form mobile-search-form" role="search">
