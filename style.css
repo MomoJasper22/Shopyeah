@@ -958,12 +958,13 @@ main {
   text-align: right;
 }
 
-/* Category Filter Pills (Arranged Appropriately Below Search Bar) */
+/* Category Filter Pills (Centered Below Search Bar) */
 .category-filter-pills {
   display: flex;
   gap: 0.65rem;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   padding-top: 1rem;
   border-top: 1px solid var(--color-border);
 }

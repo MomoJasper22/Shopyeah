@@ -139,7 +139,7 @@
 
 ### 2. `product.html` — Product Catalog
 - **Catalog Controls Header**: Balanced 3-part top controls row featuring "Sort by:" on the left, an ergonomically bounded keyword search bar (`max-width: 540px`) in the center, and "Showing X of Y products" counter on the right.
-- **Category Filter Pills**: 8 filter tabs (`All Products` + 7 categories) arranged directly below the search and controls row.
+- **Category Filter Pills**: 8 filter tabs (`All Products` + 7 categories) centered directly below the search and controls row.
 - **Product Cards**: Multi-variant products display **"Check"** (no icon); single-variant products display "Add to Cart" with icon.
 - **Product Detail Modal**: Color swatches, storage/memory chip pickers, editable quantity input (supporting both direct typing and `+`/`−` stepper buttons), dynamic price computation, and "Add to Cart" / "Buy Now".
 
