@@ -152,10 +152,8 @@ ShopyeahPH/
 ├── logo.svg          # High-resolution theme "S" monogram vector
 ├── favicon.ico       # Web browser tab icon
 ├── README.md         # Repository documentation for GitHub
-├── Agents.md         # Comprehensive AI agent reference & architecture contract
-└── tasks/
-    ├── plan.md       # High-level architecture & design plan
-    └── todo.md       # Step-by-step task tracking & checkpoints
+└── Agents.md         # Comprehensive AI agent reference & architecture contract
+
 ```
 
 ---
