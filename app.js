@@ -2368,13 +2368,63 @@
       if (zip && savedAddress.zip) zip.value = savedAddress.zip;
     }
 
-    // Tab Navigation
+    // Tab Navigation & Mobile Inline Slot Synchronization
     const navButtons = document.querySelectorAll('.profile-nav-btn');
     const tabPanels = document.querySelectorAll('.profile-tab-content');
+    const mainPanel = document.querySelector('.profile-main-panel');
+    const TAB_KEYS = ['personal', 'address', 'orders', 'security'];
 
-    function activateProfileTab(targetTab) {
+    function syncProfilePanelsLayout() {
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      if (!mainPanel) return;
+
+      TAB_KEYS.forEach((tab) => {
+        const panel = document.getElementById(`tab-panel-${tab}`);
+        if (!panel) return;
+
+        if (isMobile) {
+          const slot = document.querySelector(`.profile-mobile-slot[data-slot="${tab}"]`);
+          if (slot && panel.parentElement !== slot) {
+            slot.appendChild(panel);
+          }
+        } else {
+          if (panel.parentElement !== mainPanel) {
+            mainPanel.appendChild(panel);
+          }
+        }
+      });
+
+      // When returning to desktop, guarantee one tab is visibly active
+      if (!isMobile) {
+        const hasActive = Array.from(navButtons).some((b) => b.classList.contains('active'));
+        if (!hasActive) {
+          activateProfileTab('personal');
+        }
+      }
+    }
+
+    function activateProfileTab(targetTab, isUserClick = false) {
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+      // On mobile, clicking the already active tab toggles it closed (accordion collapse)
+      if (isUserClick && isMobile) {
+        const currentActiveBtn = document.querySelector(`.profile-nav-btn[data-tab="${targetTab}"].active`);
+        if (currentActiveBtn) {
+          currentActiveBtn.classList.remove('active');
+          currentActiveBtn.setAttribute('aria-expanded', 'false');
+          const panel = document.getElementById(`tab-panel-${targetTab}`);
+          if (panel) {
+            panel.hidden = true;
+            panel.classList.remove('active');
+          }
+          return;
+        }
+      }
+
       navButtons.forEach((b) => {
-        b.classList.toggle('active', b.getAttribute('data-tab') === targetTab);
+        const isActive = b.getAttribute('data-tab') === targetTab;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-expanded', isActive ? 'true' : 'false');
       });
 
       tabPanels.forEach((panel) => {
@@ -2386,17 +2436,36 @@
           panel.classList.remove('active');
         }
       });
+
+      if (isUserClick && isMobile) {
+        const targetBtn = document.querySelector(`.profile-nav-btn[data-tab="${targetTab}"]`);
+        if (targetBtn) {
+          setTimeout(() => {
+            targetBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 60);
+        }
+      }
     }
 
     navButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        activateProfileTab(btn.getAttribute('data-tab'));
+        activateProfileTab(btn.getAttribute('data-tab'), true);
       });
     });
 
+    const mql = window.matchMedia('(max-width: 900px)');
+    if (typeof mql.addEventListener === 'function') {
+      mql.addEventListener('change', syncProfilePanelsLayout);
+    } else if (typeof mql.addListener === 'function') {
+      mql.addListener(syncProfilePanelsLayout);
+    }
+
+    // Initial slot layout sync
+    syncProfilePanelsLayout();
+
     // Handle URL tab parameter (e.g. profile.html?tab=orders)
     const urlTabParam = new URLSearchParams(window.location.search).get('tab');
-    if (urlTabParam) {
+    if (urlTabParam && TAB_KEYS.includes(urlTabParam)) {
       activateProfileTab(urlTabParam);
     }
 

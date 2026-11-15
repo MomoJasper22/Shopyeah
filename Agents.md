@@ -164,6 +164,7 @@
 ### 5. `profile.html` — Customer Profile & Settings
 - **Access Guard**: Automatically redirects unauthenticated visitors to `auth.html?next=profile.html`.
 - **Sidebar**: User avatar initials, name, email, verified tier badge, and tab navigation.
+- **Responsive Mobile Layout**: On mobile viewports (≤ 900px), tab panels render dynamically inline directly beneath their corresponding navigation button (Personal Details, Delivery Addresses, Order History, and Security & Password) rather than below the Log Out button, creating an ergonomic accordion experience with smooth toggle support.
 - **Tabs**:
   1. **Personal Details**: Edit Full Name and Mobile Phone with instant session/user updates.
   2. **Delivery Addresses**: Save default street, barangay, city, province, and postal code for 1-click checkout autofill.

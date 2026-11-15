@@ -3791,6 +3791,11 @@ main {
   gap: 0.4rem;
 }
 
+.profile-nav-item {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile-nav-btn {
   display: flex;
   align-items: center;
@@ -3806,6 +3811,26 @@ main {
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-fast);
+}
+
+.profile-nav-btn span {
+  flex: 1;
+}
+
+.profile-nav-chevron {
+  display: none;
+  margin-left: auto;
+  color: var(--color-text-muted);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.profile-nav-btn.active .profile-nav-chevron {
+  color: var(--color-primary);
+  transform: rotate(180deg);
+}
+
+.profile-mobile-slot {
+  display: none;
 }
 
 .profile-nav-btn:hover {
@@ -4020,14 +4045,88 @@ main {
 @media (max-width: 900px) {
   .profile-layout {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .profile-main-panel {
-    min-height: auto;
-    padding: 1.5rem;
+    display: none !important;
+  }
+
+  .profile-nav-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-mobile-slot {
+    display: block;
+    width: 100%;
+  }
+
+  .profile-mobile-slot .profile-tab-content {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.15rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    animation: profilePanelFadeIn 0.2s ease-out;
+  }
+
+  .profile-mobile-slot .profile-tab-content[hidden] {
+    display: none !important;
+  }
+
+  .profile-mobile-slot .profile-card-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .profile-mobile-slot .profile-section-title {
+    font-size: 1.25rem;
+  }
+
+  .profile-mobile-slot .profile-section-desc {
+    font-size: 0.85rem;
+  }
+
+  .profile-mobile-slot .order-history-card {
+    background-color: var(--color-surface);
   }
 
   .form-grid-2 {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-actions-row .btn {
+    width: 100%;
+  }
+}
+
+@keyframes profilePanelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-sidebar {
+    padding: 1.25rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .profile-mobile-slot .profile-tab-content {
+    padding: 1.1rem 0.85rem;
+  }
+
+  .order-card-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
