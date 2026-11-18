@@ -45,17 +45,17 @@
 
 ## Key Features
 
-- 🛒 **Intuitive Cart Experience**: Direct quantity typing in addition to `+`/`−` stepper buttons, item deletion, clear cart option, and real-time badge counters across all pages.
-- 🚚 **Dynamic Free Shipping Meter**: Visual progress bar indicating how close the subtotal is to unlocking free nationwide shipping (₱1,500 threshold).
-- 🏷️ **Promo Code System**: Built-in coupon code `SHOPYEAH100` applies an instant ₱100 discount to the order.
-- ⚡ **"Check" Variant Modal**: Products with multiple colors, storage sizes, or add-ons feature a clean **"Check"** button that launches a full variant customizer with live price recalculation and direct typed quantity support.
-- 🔒 **Mandatory Sign-In Checkout Gate**: Shoppers must be signed in before completing checkout, preventing incomplete customer profiles and auto-filling saved shipping details upon login.
-- 👤 **Comprehensive Profile Management**:
+-  **Intuitive Cart Experience**: Direct quantity typing in addition to `+`/`−` stepper buttons, item deletion, clear cart option, and real-time badge counters across all pages.
+-  **Dynamic Free Shipping Meter**: Visual progress bar indicating how close the subtotal is to unlocking free nationwide shipping (₱1,500 threshold).
+-  **Promo Code System**: Built-in coupon code `SHOPYEAH100` applies an instant ₱100 discount to the order.
+-  **"Check" Variant Modal**: Products with multiple colors, storage sizes, or add-ons feature a clean **"Check"** button that launches a full variant customizer with live price recalculation and direct typed quantity support.
+-  **Mandatory Sign-In Checkout Gate**: Shoppers must be signed in before completing checkout, preventing incomplete customer profiles and auto-filling saved shipping details upon login.
+-  **Comprehensive Profile Management**:
   - **Personal Details**: Update your name and phone number with instant session sync.
   - **Delivery Address**: Save default street, barangay, city, and province for automated checkout population.
   - **Order History & Tracking**: Real-time record of all placed orders with generated `#SY-XXXXXX` tracking IDs and live item breakdowns.
   - **Security & Preferences**: Password update simulation and notification toggles.
-- 📱 **Maximized White Space & Responsive Layout**: Clean, breathable 1460px layout max-width, modern card proportions, touch targets, and mobile navigation drawer.
+-  **Maximized White Space & Responsive Layout**: Clean, breathable 1460px layout max-width, modern card proportions, touch targets, and mobile navigation drawer.
 
 ---
 
