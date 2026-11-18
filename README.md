@@ -162,11 +162,12 @@ ShopyeahPH/
 
 This project is created and maintained by:
 
-- **Kate Alliet**
-- **Angel Lohr Mallorca**
-- **Mary Joy Equibal**
+- **Alliet, Kate**
+- **Equibal, Mary Joy**
+- **Flores, Dewi Sri A.**
+- **Mallorca, Angel Lohr**
 - **Momo, Jasper E.**
-- **Flores, Dewi Sri**
+
 
 ---
 
